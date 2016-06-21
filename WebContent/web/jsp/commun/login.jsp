@@ -34,7 +34,7 @@
 					  <br>
 					</div>
 					<div class="row">
-						<form action="j_security_check" method="post">
+						<form action="j_security_check" method="">
 							<div class="row">
 								<div class="input-field col s10 offset-s1">
 									<i class="material-icons prefix fa fa-user" ></i>
@@ -54,7 +54,7 @@
 						  	</div>
 						 	<br>
 						 	<div class="center-align">
-								<a class="waves-effect waves-light btn deep-purple darken-2">Connexion</a>
+								<input type="submit" value="Connexion" class="waves-effect waves-light btn deep-purple darken-2"></input>
 							</div>
 							
 						</form>
