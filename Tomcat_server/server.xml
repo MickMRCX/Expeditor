@@ -62,11 +62,10 @@
   <Service name="Catalina">
 
     <!--The connectors can use a shared executor, you can define one or more named thread pools-->
-    <!--
-    <Executor name="tomcatThreadPool" namePrefix="catalina-exec-"
-        maxThreads="150" minSpareThreads="4"/>
+    <!--    
     -->
-
+	<Executor name="tomcatThreadPool" namePrefix="catalina-exec-"
+        maxThreads="150" minSpareThreads="4"/>
 
     <!-- A "Connector" represents an endpoint by which requests are received
          and responses are returned. Documentation at :
@@ -76,19 +75,31 @@
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
     <Connector port="8080" protocol="HTTP/1.1"
+			   executor="tomcatThreadPool"
                connectionTimeout="20000"
                redirectPort="8443" />
 			   
-	<Connector port="80" protocol="HTTP/1.1" redirectPort="8443" />
-		 
-	<!-- Define an AJP 1.3 Connector on port 8009 -->
-    <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />
+	<!--<Connector port="80" protocol="HTTP/1.1"
+		   executor="tomcatThreadPool"
+		   acceptCount="15"
+		   connectionTimeout="20000"
+		   redirectPort="8443" />-->
+			   
+	<!--<Connector port="80" protocol="HTTP/1.1" redirectPort="8443" />-->		 
     
 	<!-- TODO: Modifier le chemin vers le keystore de chez vous. --> 
     <Connector port="8443" protocol="org.apache.coyote.http11.Http11NioProtocol"
                maxThreads="150" SSLEnabled="true" scheme="https" secure="true"
+               clientAuth="false" sslProtocol="TLS" keystoreFile="D:\tomcat\keystore\key.keystore" keystorePass="motdepasse"/>
+
+	<!--<Connector port="8443" protocol="HTTP/1.1" SSLEnabled="true"
+               maxThreads="150" scheme="https" secure="true"
                clientAuth="false" sslProtocol="TLS" 
-			   keystoreFile="D:\tomcat\keystore\.keystore" keystorePass="motdepasse"/>      
+			   keystoreFile="D:\tomcat\keystore\key.keystore"
+			   keystorePass="motdepasse"/>-->
+
+	<!-- Define an AJP 1.3 Connector on port 8009 -->
+    <Connector port="8009" protocol="AJP/1.3" redirectPort="8443" />
 
 
     <!-- An Engine represents the entry point (within Catalina) that processes
@@ -118,12 +129,27 @@
              available for use by the Realm.  -->
         <Realm className="org.apache.catalina.realm.UserDatabaseRealm"
                resourceName="UserDatabase"/>
-			   
-		
-      </Realm>	  	 	 
+      </Realm>
 	  
-      <Host name="localhost"  appBase="webapps"
-            unpackWARs="true" autoDeploy="true">
+	  <Host name="localhost"  appBase="webapps"
+            unpackWARs="false" autoDeploy="false"
+			deployOnStartup="true">
+        <!-- SingleSignOn valve, share authentication between web applications
+             Documentation at: /docs/config/valve.html -->
+        <!--
+        <Valve className="org.apache.catalina.authenticator.SingleSignOn" />
+        -->
+        <!-- Access log processes all example.
+             Documentation at: /docs/config/valve.html
+             Note: The pattern used is equivalent to using pattern="common" -->
+        <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs"
+               prefix="localhost_access_log." suffix=".txt"
+               pattern="%h %l %u %t &quot;%r&quot; %s %b" />
+      </Host>
+	  
+	  <!-- TODO : changer le répértoire de déploiement -->	  
+      <Host name="expeditor"  appBase="webapps"
+            unpackWARs="false" autoDeploy="false">
 
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->
@@ -145,8 +171,8 @@
 		<!--TODO: Définir les tables user et roles --> 
 		<Realm className="org.apache.catalina.realm.DataSourceRealm"
 				dataSourceName="jdbc/Expeditor" resourceName="AuthentificationRealm"
-				userTable="users" userNameCol="user_name" userCredCol="user_pass"
-				userRoleTable="user_roles" roleNameCol="role_name"/>
+				userTable="Utilisateurs" userNameCol="Login" userCredCol="MotDePasse"
+				userRoleTable="Droits" roleNameCol="Libelle"/>
 
       </Host>
     </Engine>
