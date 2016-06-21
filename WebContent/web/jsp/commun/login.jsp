@@ -30,22 +30,22 @@
 				</div>
 				<div class="col s4 offset-s4 deep-orange lighten-2 z-depth-2">
 					<div>
-					  <h3 class="center-align">Connexion</h3>
+					  <h3 class="center-align">Expeditor <i class="fa fa-fighter-jet"  aria-hidden="true"></i></h3>
 					  <br>
 					</div>
 					<div class="row">
-						<form class="">
+						<form action="j_security_check" method="post">
 							<div class="row">
 								<div class="input-field col s10 offset-s1">
 									<i class="material-icons prefix fa fa-user" ></i>
-									<input id="icon_prefix" class="validate" type="text">
+									<input id="icon_prefix" class="validate" type="text" name="j_username">
 									<label class="" for="icon_prefix">Identifiant</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s10 offset-s1">
-									<i class="fa fa-lock material-icons prefix"></i>
-									<input id="icon_key" class="validate" type="password">
+									<i class="material-icons prefix fa fa-lock"></i>
+									<input id="icon_key" class="validate" type="password" name="j_password">
 									<label class="" for="icon_key">Mot de passe</label>
 								</div>
 							</div>

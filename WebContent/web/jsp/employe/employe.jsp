@@ -20,7 +20,10 @@
 			
 			<nav>
 				<div class="nav-wrapper  deep-orange lighten-2">
-					<a href="" class="brand-logo center ">expeditor <i class="fa fa-fighter-jet" aria-hidden="true"></i></a>
+					<a href="" class="brand-logo center ">Expeditor <i class="fa fa-fighter-jet"></i></a>
+					<ul class="right">
+						<li><a href="#" class=""><i class="material-icons fa fa-sign-out"></i></a></li>
+					</ul>
 				</div>
 			</nav>
 		</header>
