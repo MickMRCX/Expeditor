@@ -5,14 +5,15 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Expeditor</title>
-		<!--Import Google Icon Font-->
-		<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 		<!--Import materialize.css-->
-		<link type="text/css" rel="stylesheet" href="../../styles/materialize.min.css" media="screen,projection">
+		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/web/styles/materialize.min.css" media="screen,projection">
 		<!--Let browser know website is optimized for mobile-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 	
+			
+		<!-- Font Awesome -->
+		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/web/styles/font-awesome.min.css" media="screen,projection">
 		
-		<link type="text/css" rel="stylesheet" href="../../styles/style.css" media="screen,projection">
+		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/web/styles/style.css" media="screen,projection">
 		 
 	</head>
 	<body>
@@ -36,14 +37,14 @@
 						<form class="">
 							<div class="row">
 								<div class="input-field col s10 offset-s1">
-									<i class="material-icons prefix">account_circle</i>
+									<i class="material-icons prefix fa fa-user" ></i>
 									<input id="icon_prefix" class="validate" type="text">
 									<label class="" for="icon_prefix">Identifiant</label>
 								</div>
 							</div>
 							<div class="row">
 								<div class="input-field col s10 offset-s1">
-									<i class="material-icons prefix">vpn_key</i>
+									<i class="fa fa-lock material-icons prefix"></i>
 									<input id="icon_key" class="validate" type="password">
 									<label class="" for="icon_key">Mot de passe</label>
 								</div>
@@ -63,8 +64,8 @@
 		</main>
 		<footer>
 			<!--Import jQuery before materialize.js-->
-			<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-			<script type="text/javascript" src="../../javascript/materialize.min.js"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/web/javascript/jquery-2.1.1.min.js"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/web/javascript/materialize.min.js"></script>
 		</footer>
 	</body>
 </html>
