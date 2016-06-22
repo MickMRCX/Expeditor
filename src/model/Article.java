@@ -3,16 +3,16 @@ package model;
 public class Article {
 	
 	private int identifiant;
-	private int libelle;
+	private String libelle;
 	private int poids;
 	
-	public Article(int libelle, int poids) {
+	public Article(String libelle, int poids) {
 		super();
 		this.libelle = libelle;
 		this.poids = poids;
 	}
 	
-	public Article(int identifiant, int libelle, int poids) {
+	public Article(int identifiant, String libelle, int poids) {
 		super();
 		this.identifiant = identifiant;
 		this.libelle = libelle;
@@ -27,11 +27,11 @@ public class Article {
 		this.identifiant = identifiant;
 	}
 	
-	public int getLibelle() {
+	public String getLibelle() {
 		return libelle;
 	}
 	
-	public void setLibelle(int libelle) {
+	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
 	
