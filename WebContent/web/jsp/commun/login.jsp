@@ -52,7 +52,8 @@
 							<div class="center-align">
 						  		<a href="#">Mot de passe oublié</a>
 						  	</div>
-						 	<br>
+						 	<br >
+						 	<br >
 						 	<div class="center-align">
 								<input type="submit" value="Connexion" class="waves-effect waves-light btn deep-purple lighten-1" />
 							</div>

@@ -36,21 +36,35 @@
 .commande-client {
 	border-bottom-width: 2px;
 	border-bottom-style: solid;
-    height: 25%;
-    overflow: auto;
    	background-color: #ffffff;
+   	height: 35%;
+   	width: 100%;
+   	position:relative;
+   	overflow-y: auto;
 }
+
+.commande-client > div {
+    float: left;
+    height: 100%;
+   	width: 100%;    
+    margin: auto;
+    overflow-y: auto;
+    position: absolute;
+}
+
 
 /*
  * Gestion d'un taille de page fixe
  */
  
 body {
+	
 	display: flex;
-	min-height: 100vh;
+	min-height: 1vh;
 	flex-direction: column;
 	background-color: #eeeeee;
-	overflow : hidden;
+	overflow: auto;
+	white-space: nowrap;
 }
 
 main {
