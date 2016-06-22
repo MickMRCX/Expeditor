@@ -9,9 +9,9 @@ public interface IRepository<T> extends Serializable {
 	
 	List<T> getAll();
 	
-	void insert(T obj);
+	T insert(T obj);
 	
-	void upadte(T obj);
+	T upadte(T obj);
 	
 	void delete(T obj);
 }

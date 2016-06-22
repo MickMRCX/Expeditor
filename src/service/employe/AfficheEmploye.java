@@ -44,13 +44,13 @@ public class AfficheEmploye extends HttpServlet {
         IUtilisateurDAL userDAL = new IUtilisateurDAL() {
 			
 			@Override
-			public void upadte(Utilisateur obj) {
+			public Utilisateur upadte(Utilisateur obj) {
 				// TODO Auto-generated method stub
 				
 			}
 			
 			@Override
-			public void insert(Utilisateur obj) {
+			public Utilisateur insert(Utilisateur obj) {
 				// TODO Auto-generated method stub
 				
 			}
