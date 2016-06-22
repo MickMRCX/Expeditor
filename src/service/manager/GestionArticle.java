@@ -70,7 +70,7 @@ public class GestionArticle extends HttpServlet {
 			}
 			
 			@Override
-			public void delete(Article obj) {
+			public void delete(int obj) {
 				// TODO Auto-generated method stub
 				
 			}
@@ -104,7 +104,7 @@ public class GestionArticle extends HttpServlet {
 			
 			Article article = new Article(identifiant, 0, 0);
 			
-			dal.delete(article);
+			dal.delete(article.getIdentifiant());
 			
 		}
 		

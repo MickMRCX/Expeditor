@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dal.IUtilisateurDAL;
+import dal.impl.DALFactory;
 import dal.impl.UtilisateurDAL;
 import model.Utilisateur;
 
@@ -44,10 +46,8 @@ public class GestionEmploye extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
 		String action = request.getParameter(ACTION);
-		
+		IUtilisateurDAL dal = DALFactory.getUtilisateurDAL();
 		if (action.equalsIgnoreCase(ACTION_ADD)) {
-			
-			UtilisateurDAL dal = new UtilisateurDAL();
 			
 			String nom = request.getParameter(NOM);
 			String login = request.getParameter(LOGIN);
@@ -58,8 +58,6 @@ public class GestionEmploye extends HttpServlet {
 			dal.insert(user);
 
 		}else if(action.equalsIgnoreCase(ACTION_MODIFY)){
-			
-			UtilisateurDAL dal = new UtilisateurDAL();
 			
 			int identifiant = Integer.valueOf(request.getParameter(ID));
 			String nom = request.getParameter(NOM);
@@ -72,13 +70,11 @@ public class GestionEmploye extends HttpServlet {
 			
 		}else if(action.equalsIgnoreCase(ACTION_DELETE)){
 			
-			UtilisateurDAL dal = new UtilisateurDAL();
-			
 			int identifiant = Integer.valueOf(request.getParameter(ID));
 			
 			Utilisateur user = new Utilisateur(identifiant, null, null, null);
 			
-			dal.delete(user);
+			dal.delete(user.getIdentifiant());
 			
 		}
 		

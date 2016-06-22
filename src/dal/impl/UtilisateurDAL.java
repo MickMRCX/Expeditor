@@ -14,6 +14,11 @@ import model.Utilisateur;
 
 public class UtilisateurDAL implements IUtilisateurDAL {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4501643423779172225L;
+
 	private final String SELECT_BY_ID = "SELECT Identifiant, Nom, Login, MotDePasse "
 			+ "FROM Utilisateurs WHERE Identifiant = ?";
 
@@ -28,7 +33,11 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 			+ "WHERE Identifiant = ?";
 
 	private final String DELETE = "DELETE FROM Utilisateurs WHERE Identifiant = ?";
-
+	
+	UtilisateurDAL() {
+		
+	}
+	
 	@Override
 	public Utilisateur getOneByID(int id) {
 		Utilisateur retour = null;
@@ -100,7 +109,7 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 				requete.setString(1, obj.getNom());
 				requete.setString(2, obj.getLogin());
 				requete.setString(3, obj.getMotDePasse());
-				requete.executeUpdate();				
+				requete.executeUpdate();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -126,7 +135,7 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 				requete.setString(1, obj.getNom());
 				requete.setString(2, obj.getLogin());
 				requete.setString(3, obj.getMotDePasse());
-				requete.executeUpdate();				
+				requete.executeUpdate();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -143,15 +152,13 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 	}
 
 	@Override
-	public void delete(Utilisateur obj) {
+	public void delete(int identifiant) {
 		Connection cnx = null;
 		try {
-			if (obj != null) {
-				cnx = AccesBase.getConnection();
-				PreparedStatement requete = cnx.prepareStatement(DELETE);
-				requete.setInt(1, obj.getIdentifiant());
-				requete.executeUpdate();				
-			}
+			cnx = AccesBase.getConnection();
+			PreparedStatement requete = cnx.prepareStatement(DELETE);
+			requete.setInt(1, identifiant);
+			requete.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
