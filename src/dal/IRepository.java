@@ -11,7 +11,7 @@ public interface IRepository<T> extends Serializable {
 	
 	T insert(T obj);
 	
-	T upadte(T obj);
+	T update(T obj);
 	
 	void delete(int identifiant);
 }

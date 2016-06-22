@@ -46,7 +46,7 @@ public class GestionArticle extends HttpServlet {
 		IArticleDAL dal = new IArticleDAL() {
 			
 			@Override
-			public Article upadte(Article obj) {
+			public Article update(Article obj) {
 				// TODO Auto-generated method stub
 				return null;
 			}
@@ -96,7 +96,7 @@ public class GestionArticle extends HttpServlet {
 			
 			Article article = new Article(identifiant, libelle, poids);
 			
-			dal.upadte(article);
+			dal.update(article);
 			
 		}else if(action.equalsIgnoreCase(ACTION_DELETE)){
 			

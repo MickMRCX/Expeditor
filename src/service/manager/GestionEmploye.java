@@ -66,7 +66,7 @@ public class GestionEmploye extends HttpServlet {
 			
 			Utilisateur user = new Utilisateur(identifiant, nom, login, motDePasse);
 			
-			dal.upadte(user);
+			dal.update(user);
 			
 		}else if(action.equalsIgnoreCase(ACTION_DELETE)){
 			
