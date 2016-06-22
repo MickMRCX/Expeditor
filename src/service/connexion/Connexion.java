@@ -11,7 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.naming.factory.DataSourceLinkFactory;
+
 import dal.ICommandeDAL;
+import dal.IUtilisateurDAL;
+import dal.impl.DALFactory;
 import dal.impl.UtilisateurDAL;
 import model.Commande;
 import model.Etats;
@@ -23,74 +27,53 @@ import model.Utilisateur;
 @WebServlet("/Connexion")
 public class Connexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public Connexion() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+//	private final String ROLE_EMPLOYE = "employe";
+	private final String ROLE_MANAGER = "manager";
+	private final String ACCUEIL_EMPLOYE = "AccueilEmploye";
+	private final String ACCUEIL_MANAGER = "AccueilManager";
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	public Connexion() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
-		UtilisateurDAL UtilisateurDAL = new UtilisateurDAL();
-		Utilisateur user = UtilisateurDAL.getOneByLogin(request.getUserPrincipal().getName());
-	    this.getServletConfig().getServletContext().setAttribute("user", user);
-	    ICommandeDAL commandeDAL = new ICommandeDAL() {
-			
-			@Override
-			public Commande upadte(Commande obj) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public Commande insert(Commande obj) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public Commande getOneByID(int id) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public List<Commande> getAll() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public void delete(Commande obj) {
-				// TODO Auto-generated method stub
-				
-			}
-		};
-	    
-        Commande commande = commandeDAL.getOneByID(0);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		processExecute(request, response);
+	}
 
-        RequestDispatcher requestDispatcher;
-	    if (commande != null) {
-	    	this.getServletConfig().getServletContext().setAttribute("commande", commande);
-	    	requestDispatcher = request.getRequestDispatcher("Employe");
-		}else{
-			requestDispatcher = request.getRequestDispatcher("Manager");	        
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		processExecute(request, response);
+	}
+
+	private void processExecute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		IUtilisateurDAL userDAl = DALFactory.getUtilisateurDAL();
+		Utilisateur user = userDAl.getOneByLogin(request.getUserPrincipal().getName());
+		this.getServletConfig().getServletContext().setAttribute("user", user);
+		RequestDispatcher requestDispatcher;
+		String destination;
+
+		if (request.isUserInRole(ROLE_MANAGER)) {
+			destination = ACCUEIL_MANAGER;
+		} else {
+			destination = ACCUEIL_EMPLOYE;
 		}
-	    requestDispatcher.forward(request, response);
+
+		requestDispatcher = request.getRequestDispatcher(destination);
+		requestDispatcher.forward(request, response);
 	}
 
 }

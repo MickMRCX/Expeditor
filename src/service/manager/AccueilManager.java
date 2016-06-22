@@ -19,32 +19,40 @@ import dto.LigneCommandeManager;
 @WebServlet("/AccueilManager")
 public class AccueilManager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AccueilManager() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+	private final String ACCUEIL_MANAGER = "/web/jsp/manager/acceuilManager.jsp";
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		List<LigneCommandeManager> commandes = new ArrayList<LigneCommandeManager>();//DAL
-		request.setAttribute("commandes", commandes);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Expeditor/WebContent/web/jsp/employe/employe.jsp");
+	public AccueilManager() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		processExecute(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		processExecute(request, response);
+	}
+
+	private void processExecute(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// List<LigneCommandeManager> commandes = new
+		// ArrayList<LigneCommandeManager>();//DAL
+		// request.setAttribute("commandes", commandes);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher(ACCUEIL_MANAGER);
 		requestDispatcher.forward(request, response);
 	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
-
 }
