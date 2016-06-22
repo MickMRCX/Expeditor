@@ -131,10 +131,11 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 		try {
 			if (obj != null) {
 				cnx = AccesBase.getConnection();
-				PreparedStatement requete = cnx.prepareStatement(UPDATE, Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement requete = cnx.prepareStatement(UPDATE);
 				requete.setString(1, obj.getNom());
 				requete.setString(2, obj.getLogin());
 				requete.setString(3, obj.getMotDePasse());
+				requete.setInt(4, obj.getIdentifiant());
 				requete.executeUpdate();
 			}
 		} catch (SQLException e) {
