@@ -11,7 +11,6 @@ import java.util.List;
 import dal.AccesBase;
 import dal.IArticleDAL;
 import model.Article;
-import model.Utilisateur;
 
 public class ArticleDAL implements IArticleDAL{
 
