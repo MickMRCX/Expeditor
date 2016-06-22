@@ -7,9 +7,9 @@ public class Commande {
 	private Date date_Commande;
 	private String nom_Client;
 	private String adresse;
-	private int etat;
+	private Etats etat;
 
-	public Commande(Date date_Commande, String nom_Client, String adresse, int etat) {
+	public Commande(Date date_Commande, String nom_Client, String adresse, Etats etat) {
 		super();
 		this.date_Commande = date_Commande;
 		this.nom_Client = nom_Client;
@@ -17,7 +17,7 @@ public class Commande {
 		this.etat = etat;
 	}
 
-	public Commande(int identifiant, Date date_Commande, String nom_Client, String adresse, int etat) {
+	public Commande(int identifiant, Date date_Commande, String nom_Client, String adresse, Etats etat) {
 		super();
 		this.identifiant = identifiant;
 		this.date_Commande = date_Commande;
@@ -58,11 +58,11 @@ public class Commande {
 		this.adresse = adresse;
 	}
 	
-	public int getEtat() {
+	public Etats getEtat() {
 		return etat;
 	}
-	
-	public void setEtat(int etat) {
+
+	public void setEtat(Etats etat) {
 		this.etat = etat;
 	}
 }
