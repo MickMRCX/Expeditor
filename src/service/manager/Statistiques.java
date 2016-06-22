@@ -1,4 +1,4 @@
-package service.employe;
+package service.manager;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -11,38 +11,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Article;
-import model.Commande;
-import model.Utilisateur;
+import dto.LigneStatistiques;
 
 /**
- * Servlet implementation class AccueilEmploye
+ * Servlet implementation class Statistiques
  */
-@WebServlet("/AccueilEmploye")
-public class AccueilEmploye extends HttpServlet {
+@WebServlet("/Statistiques")
+public class Statistiques extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public AccueilEmploye() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public Statistiques() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		response.setContentType("text/html;charset=UTF-8");
-		Utilisateur user = (Utilisateur) request.getSession().getAttribute("user");
-		Commande commande = (Commande) request.getSession().getAttribute("commande");
-		List<Article> articles = new ArrayList<Article>(); // appel DAL 
-		request.setAttribute("commande", commande);
-		request.setAttribute("articles", articles);
+		List<LigneStatistiques> commandes = new ArrayList<LigneStatistiques>(); // appel DAL 
+		request.setAttribute("commandes", commandes);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Expeditor/WebContent/web/jsp/employe/employe.jsp");
 		requestDispatcher.forward(request, response);
+		
 	}
 
 	/**

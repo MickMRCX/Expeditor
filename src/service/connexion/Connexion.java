@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import dal.IUtilisateurDAL;
+import dal.ICommandeDAL;
 import dal.impl.UtilisateurDAL;
 import model.Commande;
 import model.Etats;
@@ -48,7 +48,40 @@ public class Connexion extends HttpServlet {
 		UtilisateurDAL UtilisateurDAL = new UtilisateurDAL();
 		Utilisateur user = UtilisateurDAL.getOneByLogin(request.getUserPrincipal().getName());
 	    this.getServletConfig().getServletContext().setAttribute("user", user);
-        Commande commande = new Commande(0, new Date(), "Joseph", "120 rue Pascal",Etats.AFFECTABLE);
+	    ICommandeDAL commandeDAL = new ICommandeDAL() {
+			
+			@Override
+			public Commande upadte(Commande obj) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			public Commande insert(Commande obj) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			public Commande getOneByID(int id) {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			public List<Commande> getAll() {
+				// TODO Auto-generated method stub
+				return null;
+			}
+			
+			@Override
+			public void delete(Commande obj) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+	    
+        Commande commande = commandeDAL.getOneByID(0);
 
         RequestDispatcher requestDispatcher;
 	    if (commande != null) {
