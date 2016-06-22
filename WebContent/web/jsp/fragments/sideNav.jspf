@@ -1,0 +1,12 @@
+			<ul id="slide-out" class="side-nav fixed deep-orange lighten-2 z-depth-0">
+				<li><a class="tooltipped" data-position="right" data-delay="200" data-tooltip="Gestion des commandes" href="#"><i class="material-icons fa fa-files-o small"></i></a></li>
+				<li><a class="tooltipped" data-position="right" data-delay="200" data-tooltip="Statistiques" href="#"><i class="material-icons fa fa-tasks small"></i></a></li>
+				<li><a class="tooltipped" data-position="right" data-delay="200" data-tooltip="Gestion d'equipe" href="#"><i class=" material-icons fa fa-users small"></i></a></li>
+				<li><a class="tooltipped" data-position="right" data-delay="200" data-tooltip="Gestion des articles" href="#"><i class="material-icons fa fa-shopping-cart small"></i></a></li>
+				<li><a class="tooltipped" data-position="right" data-delay="200" data-tooltip="Ajout du csv" href="#"><i class="material-icons fa fa-file-excel-o small"></i></a></li>
+			</ul>
+			<div class="fixed-action-btn hide-on-large-only" style="top: 24px; left: 24px;">
+				<a href="#" data-activates="slide-out" class="btn-floating  waves-effect grey darken-4 button-collapse">
+					<i class="mdi-navigation-menu fa fa-bars"></i>
+				</a>
+			</div>

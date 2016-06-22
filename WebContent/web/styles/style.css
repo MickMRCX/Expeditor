@@ -88,7 +88,7 @@ table.table-commande thead, table.table-commande tbody {
 }
 table.table-commande tbody {
     overflow: auto;
-    height: 300px;
+    height: 38vh;
 }
 table.table-commande tr {
     width: 100%;
@@ -99,12 +99,31 @@ table.table-commande th, table.table-commande td {
     width: 20%;
 }
 
+table.table-full-screen  tbody {
+	    height: 86vh;
+}
+
 .btn-block{
 	display: block;
 	width: 100%;
 	height:100%;
 }
 
+ul#slide-out {
+	margin-top: 64px;
+}
+main.side, footer.side {
+    padding-left: 85px;
+}
+
+@media only screen and (max-width : 992px) {
+  header, main, footer {
+    padding-left: 0;
+  }
+  ul#slide-out {
+	margin-top: 0px;
+  
+}
 
 
 
