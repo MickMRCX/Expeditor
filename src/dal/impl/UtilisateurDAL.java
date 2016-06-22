@@ -126,12 +126,12 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 	}
 
 	@Override
-	public Utilisateur upadte(Utilisateur obj) {
+	public Utilisateur update(Utilisateur obj) {
 		Connection cnx = null;
 		try {
 			if (obj != null) {
 				cnx = AccesBase.getConnection();
-				PreparedStatement requete = cnx.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
+				PreparedStatement requete = cnx.prepareStatement(UPDATE, Statement.RETURN_GENERATED_KEYS);
 				requete.setString(1, obj.getNom());
 				requete.setString(2, obj.getLogin());
 				requete.setString(3, obj.getMotDePasse());
