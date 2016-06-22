@@ -135,7 +135,7 @@
 								<td>38</td>
 								<td>300</td>
 								<td>11400</td>
-								<td class="">
+								<td>
 									<div class="col s3 offset-s3 center-align">
 										<i class="material-icons fa fa-plus-square-o fa-lg"></i>
 									</div>

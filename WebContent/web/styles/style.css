@@ -113,6 +113,10 @@ table.table-full-screen  tbody {
 	    height: 86vh;
 }
 
+table.table-med-screen  tbody {
+	    height: 76vh;
+}
+
 .btn-block{
 	display: block;
 	width: 100%;
