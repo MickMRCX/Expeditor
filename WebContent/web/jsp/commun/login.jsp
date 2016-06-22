@@ -54,7 +54,7 @@
 						  	</div>
 						 	<br>
 						 	<div class="center-align">
-								<input type="submit" value="Connexion" class="waves-effect waves-light btn deep-purple darken-2" />
+								<input type="submit" value="Connexion" class="waves-effect waves-light btn deep-purple lighten-1" />
 							</div>
 							
 						</form>

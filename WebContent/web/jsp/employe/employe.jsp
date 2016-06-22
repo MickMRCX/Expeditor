@@ -181,7 +181,7 @@
 			</div>
 			<div class="row">
 				<div class="col s10 offset-s1">
-					<a class="waves-effect waves-light btn btn-large btn-block"><i class="fa fa-print col s4 "></i><b class="col s4">valider</b> <i class="fa fa-check col s4"></i></a>
+					<a class="waves-effect waves-light btn btn-large btn-block deep-purple lighten-1"><i class="fa fa-print col s4 "></i><b class="col s4">valider</b> <i class="fa fa-check col s4"></i></a>
 				</div>
 			</div>
 		</main>
