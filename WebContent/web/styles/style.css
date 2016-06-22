@@ -52,6 +52,16 @@
     position: absolute;
 }
 
+/*
+ * Gestion du scroll sur une page
+ */
+.scroll-page {
+   	height: 92vh;
+   	width: 100%;
+   	position:relative;
+   	overflow-y: auto;
+}
+
 
 /*
  * Gestion d'un taille de page fixe
@@ -117,14 +127,32 @@ main.side, footer.side {
 }
 
 @media only screen and (max-width : 992px) {
-  header, main, footer {
-    padding-left: 0;
-  }
-  ul#slide-out {
-	margin-top: 0px;
-  
+	header, main, footer {
+		padding-left: 0;
+	}
+	ul#slide-out {
+		margin-top: 0px;
+	}  
 }
 
+
+/*
+ * Supression des polices google
+ */
+html {
+    font-family: GillSans, Calibri, Trebuchet, sans-serif;
+}
+
+/**
+    Modififation des progress bares
+*/
+.progress {
+    height: 10px;
+    background-color: #d1c4e9;
+}
+.progress .determinate {;
+    background-color: #7e57c2;
+}
 
 
 

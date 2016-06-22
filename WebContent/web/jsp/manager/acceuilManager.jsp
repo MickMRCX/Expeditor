@@ -5,7 +5,6 @@
 		<header>
 			<%@include file="/web/jsp/fragments/sideNav.jspf" %>
 			<%@include file="/web/jsp/fragments/topMenuBar.jspf" %>			  
-		
     	</header>
 		<main class="side">
 			<table class="striped table-commande table-full-screen">
