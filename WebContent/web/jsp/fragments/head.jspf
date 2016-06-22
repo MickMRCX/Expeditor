@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Expeditor</title>
+		<!--Import materialize.css-->
+		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/web/styles/materialize.min.css" media="screen,projection">
+		<!--Let browser know website is optimized for mobile-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 	
+			
+		<!-- Font Awesome -->
+		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/web/styles/font-awesome.min.css" media="screen,projection">
+		
+		<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/web/styles/style.css" media="screen,projection">
+	</head>

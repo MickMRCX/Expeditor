@@ -1,0 +1,5 @@
+			<!--Import jQuery before materialize.js-->
+			<script type="text/javascript" src="${pageContext.request.contextPath}/web/javascript/jquery-2.1.1.min.js"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/web/javascript/materialize.min.js"></script>
+			<script type="text/javascript" src="${pageContext.request.contextPath}/web/javascript/script.js"></script>
+			
