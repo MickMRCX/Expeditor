@@ -39,7 +39,6 @@
 					          <%}else{ %>
 					          <input id="loginEmploye" name="loginEmploye" type="text" class="validate">
 					          <%} %>
-					          <input id="loginEmploye" name="loginEmploye" type="text" class="validate">
 					          <label for="loginEmploye">Login de l'employe</label>
 				        </div>
 		    		</div>
