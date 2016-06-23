@@ -47,6 +47,38 @@ public class GestionEmploye extends HttpServlet {
 				
 		String action = request.getParameter(ACTION);
 		IUtilisateurDAL dal = DALFactory.getUtilisateurDAL();
+		RequestDispatcher requestDispatcher = null;
+		if (action.equalsIgnoreCase(ACTION_ADD)) {
+				
+			requestDispatcher = request.getRequestDispatcher("/web/jsp/manager/ajoutEmploye.jsp");
+	
+		}else if(action.equalsIgnoreCase(ACTION_MODIFY)){
+			Utilisateur user = dal.getOneByID(Integer.valueOf(request.getParameter(ID)));
+			request.setAttribute("user", user);
+			requestDispatcher = request.getRequestDispatcher("/web/jsp/manager/ajoutEmploye.jsp");
+				
+		}
+		else if(action.equalsIgnoreCase(ACTION_DELETE)){
+			
+			int identifiant = Integer.valueOf(request.getParameter(ID));
+						
+			dal.delete(identifiant);
+			requestDispatcher = request.getRequestDispatcher("ListeEmploye");
+			
+		}else{
+			requestDispatcher = request.getRequestDispatcher("ListeEmploye");
+		}
+		
+	    requestDispatcher.forward(request, response);
+		
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String action = request.getParameter(ACTION);
+		IUtilisateurDAL dal = DALFactory.getUtilisateurDAL();
 		if (action.equalsIgnoreCase(ACTION_ADD)) {
 			
 			String nom = request.getParameter(NOM);
@@ -68,27 +100,9 @@ public class GestionEmploye extends HttpServlet {
 			
 			dal.update(user);
 			
-		}else if(action.equalsIgnoreCase(ACTION_DELETE)){
-			
-			int identifiant = Integer.valueOf(request.getParameter(ID));
-			
-			Utilisateur user = new Utilisateur(identifiant, null, null, null);
-			
-			dal.delete(user.getIdentifiant());
-			
 		}
-		
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("Employe");
-	    requestDispatcher.forward(request, response);
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListeEmploye");
+	    requestDispatcher.forward(request, response); 
 	}
 
 }
