@@ -19,6 +19,10 @@ public class Statistiques {
 		}
 		return lignes;
 	}
-	
+	public Statistiques(int nbCommandesTotal, List<LigneStatistiques> lignes) {
+		super();
+		this.nbCommandesTotal = nbCommandesTotal;
+		this.lignes = lignes;
+	}	
 	
 }

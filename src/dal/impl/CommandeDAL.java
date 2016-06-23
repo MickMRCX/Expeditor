@@ -38,6 +38,8 @@ public class CommandeDAL implements ICommandeDAL {
 	private final String DELETE = "DELETE FROM Commandes WHERE Identifiant = ?";
 	
 	private final String SELECT_DISPLAYLIST = "SELECT c.Identifiant, u.Nom,c.Etat_id FROM Commande_Traitee ct INNER JOIN Commande c ON ct.Commande_id = c.Identifiant INNER JOIN Utilisateurs u ON ct.Utilisateur_id = u.Identifiant ORDER BY c.Identifiant";
+	
+	private final String SELECT_STATS = "SELECT u.Nom,COUNT(DISTINCT c.Identifiant) as nbCommandes FROM Commande_Traitee ct INNER JOIN Commande c ON ct.Commande_id = c.Identifiant INNER JOIN Utilisateurs u ON ct.Utilisateur_id = u.Identifiant GROUP BY u.Identifiant,u.Nom";
 
 	@Override
 	public Commande getOneByID(int id) {
@@ -210,22 +212,22 @@ public class CommandeDAL implements ICommandeDAL {
 	}
 
 	@Override
-	public Statistiques getStatistiques() {
-		Statistiques statistiques = new Statistiques();
-		List<LigneCommandeManager> retour = null;
+	public Statistiques getStatistiques() {		
+		List<LigneStatistiques> lignes = null;
+		int nbTotal = 0;
 		Connection cnx = null;
 		try {
 			cnx = AccesBase.getConnection();
-			PreparedStatement requete = cnx.prepareStatement(SELECT_DISPLAYLIST);
+			PreparedStatement requete = cnx.prepareStatement(SELECT_STATS);
 			ResultSet resultat = requete.executeQuery();
-			retour = new ArrayList<LigneCommandeManager>();
+			lignes = new ArrayList<LigneStatistiques>();
 			while (resultat.next()) {
 				
-				Integer idCommande = resultat.getInt("identifiant");
-				Etats etat = Utilities.getEtat(resultat.getInt("etat"));
+				Integer nbCommandes = resultat.getInt("nbCommandes");
 				String nomEmploye = resultat.getString("nom");
-				LigneCommandeManager ligne = new LigneCommandeManager(idCommande, etat, nomEmploye);
-				retour.add(ligne);
+				LigneStatistiques ligne = new LigneStatistiques(nomEmploye, nbCommandes);
+				lignes.add(ligne);
+				nbTotal+=nbCommandes;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -238,7 +240,7 @@ public class CommandeDAL implements ICommandeDAL {
 				e.printStackTrace();
 			}
 		}
-		return statistiques;
+		return new Statistiques(nbTotal, lignes);
 	}
 
 	
