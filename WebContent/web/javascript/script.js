@@ -71,7 +71,7 @@ function checkOnArticle(){
 	var login = $("#nomArticle").val();
 	var poid = $("#poidArticle").val();
 	var error = false;
-	if(nom.trim() == ""){
+	if(login.trim() == ""){
 		$('#messageErreur').html("Le nom ne peut etre vide");
 		error = true;
 	}
