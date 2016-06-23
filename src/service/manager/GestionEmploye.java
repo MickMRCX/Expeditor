@@ -95,12 +95,10 @@ public class GestionEmploye extends HttpServlet {
 			String nom = request.getParameter(NOM);
 			String login = request.getParameter(LOGIN);
 			String motDePasse = request.getParameter(MOT_DE_PASSE);		
-			String ancienLogin = request.getParameter(LOGIN_OLD);
 			
 			Utilisateur user = new Utilisateur(identifiant, nom, login, motDePasse);
 			
 			dal.update(user);
-			dal.updateDroits(login, ancienLogin);
 		}
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListeEmploye");
 	    requestDispatcher.forward(request, response); 
