@@ -8,4 +8,5 @@ public interface IUtilisateurDAL extends IRepository<Utilisateur>{
 	
 	Utilisateur getOneByLogin(String login);
 	List<Utilisateur> getEmployes();
+	void updateDroits(Utilisateur user, String ancienLogin);
 }

@@ -6,12 +6,14 @@ public class Utilisateur {
 	private String nom;
 	private String login;
 	private String motDePasse;
+	private boolean archive;
 	
 	public Utilisateur(String nom, String login, String motDePasse) {
 		super();
 		this.nom = nom;
 		this.login = login;
 		this.motDePasse = motDePasse;
+		this.archive = false;
 	}
 
 	public Utilisateur(int identifiant, String nom, String login, String motDePasse) {
@@ -20,6 +22,18 @@ public class Utilisateur {
 		this.nom = nom;
 		this.login = login;
 		this.motDePasse = motDePasse;
+		this.archive = false;
+	}
+	
+	
+
+	public Utilisateur(int identifiant, String nom, String login, String motDePasse, boolean archive) {
+		super();
+		this.identifiant = identifiant;
+		this.nom = nom;
+		this.login = login;
+		this.motDePasse = motDePasse;
+		this.archive = archive;
 	}
 
 	public int getIdentifiant() {
@@ -52,5 +66,13 @@ public class Utilisateur {
 	
 	public void setMotDePasse(String motDePasse) {
 		this.motDePasse = motDePasse;
+	}
+
+	public boolean isArchive() {
+		return archive;
+	}
+
+	public void setArchive(boolean archive) {
+		this.archive = archive;
 	}
 }

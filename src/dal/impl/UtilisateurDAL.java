@@ -27,10 +27,12 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 
 	private final String SELECT_ALL = "SELECT Identifiant, Nom, Login, MotDePasse " + "FROM Utilisateurs";
 
-	private final String INSERT = "INSERT INTO Utilisateurs VALUES(?,?,?)";
+	private final String INSERT = "INSERT INTO Utilisateurs VALUES(?,?,?,?)";
+	private final String INSERT_DROITS = "INSERT INTO Droits VALUES(?,'employe')";
 
 	private final String UPDATE = "UPDATE Utilisateurs SET Nom = ?, Login = ?, MotDePasse = ? "
 			+ "WHERE Identifiant = ?";
+	private final String UPDATE_DROPITS = "UPDATE Droits SET Login = ? WHERE Login = ?";
 
 	private final String DELETE = "UPDATE Utilisateurs SET Archive=1 "
 			+ "WHERE Identifiant = ?";
@@ -113,8 +115,13 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 				requete.setString(1, obj.getNom());
 				requete.setString(2, obj.getLogin());
 				requete.setString(3, obj.getMotDePasse());
+				requete.setByte(4, (byte)(obj.isArchive()?1:0));
 				requete.executeUpdate();
-			}
+				
+				requete = cnx.prepareStatement(INSERT_DROITS);
+				requete.setString(1, obj.getLogin());
+				requete.executeUpdate();
+			}			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -235,6 +242,30 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 			}
 		}
 		return retour;
+	}
+
+	@Override
+	public void updateDroits(Utilisateur user, String ancienLogin) {
+		Connection cnx = null;
+		try {
+			if (user != null) {
+				cnx = AccesBase.getConnection();
+				PreparedStatement requete = cnx.prepareStatement(UPDATE_DROPITS);
+				requete.setString(1, user.getLogin());
+				requete.setString(2, ancienLogin);
+				requete.executeUpdate();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (cnx != null && !cnx.isClosed()) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}		
 	}
 
 }
