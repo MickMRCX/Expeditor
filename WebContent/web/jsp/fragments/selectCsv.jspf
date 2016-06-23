@@ -1,0 +1,25 @@
+	  <!-- Modal Structure -->
+	  <div id="fileSelect" class="modal">
+			<div class="modal-content">
+				<div class="row">
+				    <form class="col s12" method="post" action="#">
+				     	<div class="row">
+							<h4>Selectionnez le fichier csv</h4>
+							<div class="file-field input-field">
+					     		<div class="btn deep-purple lighten-1">
+							        <span>File</span>
+							        <input type="file">
+							     </div>
+							     <div class="file-path-wrapper">
+							     	<input class="file-path validate" type="text">
+							     </div>
+						     </div>
+				     	</div>
+				     </form>
+				 </div>
+			</div>
+			<div class="modal-footer">
+				<a href="#!" class=" modal-action modal-close waves-effect waves-purple btn-flat">Valider</a>
+				<a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Annuler</a>
+			</div>
+	  </div>

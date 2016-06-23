@@ -129,14 +129,26 @@ ul#slide-out {
 main.side, footer.side {
     padding-left: 85px;
 }
+.vertical-spacing-20{
+	margin-top: 20vh;
+}
+.vertical-spacing-10{
+	margin-top: 10vh;
+}
+.vertical-spacing-5{
+	margin-top: 5vh;
+}
 
 @media only screen and (max-width : 992px) {
-	header, main, footer {
+	main.side, footer.side {
 		padding-left: 0;
 	}
 	ul#slide-out {
 		margin-top: 0px;
-	}  
+	}
+	.vertical-spacing{
+		margin-top: 0vh;
+	}
 }
 
 
@@ -157,6 +169,8 @@ html {
 .progress .determinate {;
     background-color: #7e57c2;
 }
+
+
 
 
 
