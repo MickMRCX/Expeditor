@@ -54,7 +54,7 @@ function checkOnSubmit(){
 		error = true;
 	}
 	else if(mdp != mdpConfirm){
-		$('#messageErreur').html("La le mot de passe et la confirmation son diferents");
+		$('#messageErreur').html("Le mot de passe et la confirmation sont diferents");
 		error = true;
 	}
 	
@@ -63,6 +63,28 @@ function checkOnSubmit(){
 	}
 	else{
 		$('#formEmploye').submit();
+	}
+}
+
+function checkOnArticle(){
+	
+	var login = $("#nomArticle").val();
+	var poid = $("#poidArticle").val();
+	var error = false;
+	if(nom.trim() == ""){
+		$('#messageErreur').html("Le nom ne peut etre vide");
+		error = true;
+	}
+	else if(poid.trim() == ""){
+		$('#messageErreur').html("Le poid ne peut etre vide");
+		error = true;
+	}
+	
+	if(error == true){
+		$('#error').openModal();
+	}
+	else{
+		$('#formArticle').submit();
 	}
 }
 

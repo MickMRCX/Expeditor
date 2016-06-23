@@ -19,6 +19,7 @@
 		    		<%if( employe != null){%>
 		    			<input type="hidden" value="<%=employe.getIdentifiant()%>" name="id">
 		    			<input type="hidden" value="modify" name="action">
+		    			<input type="hidden" value="<%=employe.getLogin()%>" name="ancienLoginEmploye">
 		    		<%}else{%>
 		    			<input type="hidden" value="add" name="action">
 		    		<%} %>
