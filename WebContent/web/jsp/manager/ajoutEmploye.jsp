@@ -15,7 +15,7 @@
 		    		employe = (Utilisateur) request.getAttribute("user");
 		    	}
 		    	%>
-		    	<form class="col s12" action="${pageContext.request.contextPath}/GestionEmploye" method="post">
+		    	<form id="formEmploye" class="col s12" action="${pageContext.request.contextPath}/GestionEmploye" method="post">
 		    		<%if( employe != null){%>
 		    			<input type="hidden" value="<%=employe.getIdentifiant()%>" name="id">
 		    			<input type="hidden" value="modify" name="action">
@@ -59,11 +59,19 @@
 							<a class="waves-effect waves-light btn btn-large btn-block #ff5252 red accent-2" href="${pageContext.request.contextPath}/ListeEmploye">annuler</a>
 						</div>
 						<div class="col s5 ">
-							<input type="submit" value="ajouter" class="waves-effect waves-light btn btn-large btn-block deep-purple lighten-1">
+							<input type="button" value="ajouter" class="waves-effect waves-light btn btn-large btn-block deep-purple lighten-1" onclick="checkOnSubmit()">
 						</div>
 		    		</div>
-		    		
 		    	</form>
+		    	<div id="error" class="modal">
+			    	<div class="modal-content">
+			      		<h4>Erreur</h4>
+			      		<p id="messageErreur">Mot de passe incorect</p>
+			    	</div>
+			   		<div class="modal-footer">
+			      		<a href="#!" class=" modal-action modal-close waves-effect waves-purble btn-flat">Ok</a>
+			    	</div>
+			  	</div>
 			</div>		
 			
 		</main>
