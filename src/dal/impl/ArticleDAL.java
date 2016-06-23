@@ -34,7 +34,7 @@ public class ArticleDAL implements IArticleDAL{
 
 	private final String DELETE = "DELETE FROM Articles WHERE Identifiant = ?";
 	
-	public ArticleDAL(){
+	ArticleDAL(){
 		
 	}
 

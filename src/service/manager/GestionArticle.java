@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dal.IArticleDAL;
+import dal.impl.DALFactory;
 import model.Article;
 
 /**
@@ -43,44 +44,13 @@ public class GestionArticle extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		IArticleDAL dal = new IArticleDAL() {
-			
-			@Override
-			public Article update(Article obj) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public Article insert(Article obj) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public Article getOneByID(int id) {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public List<Article> getAll() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public void delete(int obj) {
-				// TODO Auto-generated method stub
-				
-			}
-		};
+		IArticleDAL dal = DALFactory.getArticleDAL();
 		
 		String action = request.getParameter(ACTION);		
 		
 		if (action.equalsIgnoreCase(ACTION_ADD)) {
 			
-			int libelle = Integer.valueOf(request.getParameter(LIBELLE));
+			String libelle = request.getParameter(LIBELLE);
 			int poids = Integer.valueOf(request.getParameter(POIDS));
 			
 			Article article = new Article(libelle, poids);
@@ -91,7 +61,7 @@ public class GestionArticle extends HttpServlet {
 			
 			
 			int identifiant = Integer.valueOf(request.getParameter(ID));
-			int libelle = Integer.valueOf(request.getParameter(LIBELLE));
+			String libelle = request.getParameter(LIBELLE);
 			int poids = Integer.valueOf(request.getParameter(POIDS));
 			
 			Article article = new Article(identifiant, libelle, poids);
@@ -102,7 +72,7 @@ public class GestionArticle extends HttpServlet {
 			
 			int identifiant = Integer.valueOf(request.getParameter(ID));
 			
-			Article article = new Article(identifiant, 0, 0);
+			Article article = new Article(identifiant, "", 0);
 			
 			dal.delete(article.getIdentifiant());
 			
