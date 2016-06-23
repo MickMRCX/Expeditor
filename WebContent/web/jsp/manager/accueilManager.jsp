@@ -2,7 +2,7 @@
 <%@ page import="java.util.List" %> 
 <%@ page import="dto.LigneCommandeManager" %> 
 
-    
+
 	<%@include file="/web/jsp/fragments/head.jspf" %>
 	<body onload="">
 		<header>
@@ -21,103 +21,14 @@
 		        <tbody>
 					<%
 						List<LigneCommandeManager> commandes = (List<LigneCommandeManager>)request.getAttribute("commandes");
+						for(LigneCommandeManager commande : commandes){
 					%>
 					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
+						<td><%=commande.getIdentifiant()%></td>
+						<td><%=commande.getEtat()%></td>
+						<td><%=commande.getNomEmploye()%></td>
 					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					<tr>
-						<td>Commande A</td>
-						<td>En cours</td>
-						<td>Michel</td>
-					</tr>
-					
+					<%}%>					
 				</tbody>
 		    </table>	
 			

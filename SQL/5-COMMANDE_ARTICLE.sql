@@ -1,7 +1,7 @@
 USE [Expeditor]
 GO
 
-/****** Object:  Table [dbo].[Commande_Article]    Script Date: 21/06/2016 14:02:36 ******/
+/****** Object:  Table [dbo].[Commande_Article]    Script Date: 23/06/2016 11:12:35 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -11,8 +11,9 @@ GO
 CREATE TABLE [dbo].[Commande_Article](
 	[Article_id] [int] NOT NULL,
 	[Commande_id] [int] NOT NULL,
-	[Quantite] [int] NOT NULL,
-PRIMARY KEY CLUSTERED 
+	[Quantite_carton] [int] NOT NULL,
+	[Quantite_commandee] [int] NOT NULL,
+ CONSTRAINT [PK__Commande__2141DC3E57045392] PRIMARY KEY CLUSTERED 
 (
 	[Article_id] ASC,
 	[Commande_id] ASC
