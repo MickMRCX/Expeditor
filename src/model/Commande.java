@@ -1,6 +1,9 @@
 package model;
 
 import java.util.Date;
+import java.util.List;
+
+import dto.LigneCommandeArticle;
 
 public class Commande {
 	private int identifiant;
@@ -8,22 +11,25 @@ public class Commande {
 	private String nom_Client;
 	private String adresse;
 	private Etats etat;
+	private List<LigneCommandeArticle> article_Commande;
 
-	public Commande(Date date_Commande, String nom_Client, String adresse, Etats etat) {
+	public Commande(Date date_Commande, String nom_Client, String adresse, Etats etat, List<LigneCommandeArticle> article_Commande) {
 		super();
 		this.date_Commande = date_Commande;
 		this.nom_Client = nom_Client;
 		this.adresse = adresse;
 		this.etat = etat;
+		this.article_Commande = article_Commande;
 	}
 
-	public Commande(int identifiant, Date date_Commande, String nom_Client, String adresse, Etats etat) {
+	public Commande(int identifiant, Date date_Commande, String nom_Client, String adresse, Etats etat, List<LigneCommandeArticle> article_Commande) {
 		super();
 		this.identifiant = identifiant;
 		this.date_Commande = date_Commande;
 		this.nom_Client = nom_Client;
 		this.adresse = adresse;
 		this.etat = etat;
+		this.article_Commande = article_Commande;
 	}
 
 	public int getIdentifiant() {
@@ -64,5 +70,13 @@ public class Commande {
 
 	public void setEtat(Etats etat) {
 		this.etat = etat;
+	}
+
+	public List<LigneCommandeArticle> getArticle_commande() {
+		return article_Commande;
+	}
+
+	public void setArticle_commande(List<LigneCommandeArticle> article_Commande) {
+		this.article_Commande = article_Commande;
 	}
 }
