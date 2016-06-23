@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %> 
+<%@ page import="model.Utilisateur" %>
 	<%@include file="/web/jsp/fragments/head.jspf" %>
 	<body onload="">
 		<header>
@@ -8,15 +9,36 @@
     	</header>
 		<main class="side">
 		    <div class="row vertical-spacing-10">
-		    	<form class="col s12" action="#" method="post">
+		    	<% 
+		    	Utilisateur employe = null;
+		    	if(request.getAttribute("user")!= null){ 
+		    		employe = (Utilisateur) request.getAttribute("user");
+		    	}
+		    	%>
+		    	<form class="col s12" action="${pageContext.request.contextPath}/GestionEmploye" method="post">
+		    		<%if( employe != null){%>
+		    			<input type="hidden" value="<%=employe.getIdentifiant()%>" name="id">
+		    			<input type="hidden" value="modify" name="action">
+		    		<%}else{%>
+		    			<input type="hidden" value="add" name="action">
+		    		<%} %>
 		    		<div class="row">
 		    			<div class="input-field col s10 offset-s1">
+		    				  <%if( employe != null){%>
+					          <input id="nomEmploye" name="nomEmploye" type="text" class="validate" value="<%=employe.getNom()%>">
+					          <%}else{ %>
 					          <input id="nomEmploye" name="nomEmploye" type="text" class="validate">
+					          <%} %>
 					          <label for="nomEmploye">Nom de l'employe</label>
 				        </div>
 		    		</div>
 		    		<div class="row">
 		    			<div class="input-field col s10 offset-s1">
+		    				  <%if( employe != null){%>
+					          <input id="loginEmploye" name="loginEmploye" type="text" value="<%=employe.getLogin()%>" class="validate">
+					          <%}else{ %>
+					          <input id="loginEmploye" name="loginEmploye" type="text" class="validate">
+					          <%} %>
 					          <input id="loginEmploye" name="loginEmploye" type="text" class="validate">
 					          <label for="loginEmploye">Login de l'employe</label>
 				        </div>
@@ -35,10 +57,10 @@
 		    		</div>
 		    		<div class="row vertical-spacing-5">
 						<div class="col s5 offset-s1">
-							<a class="waves-effect waves-light btn btn-large btn-block #ff5252 red accent-2">annuler</a>
+							<a class="waves-effect waves-light btn btn-large btn-block #ff5252 red accent-2" href="${pageContext.request.contextPath}/ListeEmploye">annuler</a>
 						</div>
 						<div class="col s5 ">
-							<input type="button" value="ajouter" class="waves-effect waves-light btn btn-large btn-block deep-purple lighten-1">
+							<input type="submit" value="ajouter" class="waves-effect waves-light btn btn-large btn-block deep-purple lighten-1">
 						</div>
 		    		</div>
 		    		
