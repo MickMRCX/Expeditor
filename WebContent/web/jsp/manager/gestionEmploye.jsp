@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %> 
+<%@ page import="model.Utilisateur" %> 
+
 	<%@include file="/web/jsp/fragments/head.jspf" %>
 	<body onload="">
 		<header>
@@ -16,236 +18,32 @@
 		          </tr>
 		        </thead>
 		        <tbody>
+		        	<%
+		        		List<Utilisateur> employes = (List<Utilisateur>)request.getAttribute("employes");
+		        		for(Utilisateur employe : employes)
+		        		{
+		        	%>
 					<tr>
-						<td>Michel</td>
-						<td>michou</td>
+						<td><%=employe.getNom()%></td>
+						<td><%=employe.getLogin()%></td>
 						<td>
 							<div class="row">
 								<div class="col s3 offset-s3 center-align">
-									<i class="material-icons fa fa-pencil fa-lg"></i>
+									<a href="${pageContext.request.contextPath}/GestionEmploye?action=modify&id=<%=employe.getIdentifiant()%>"><i class="material-icons fa fa-pencil fa-lg"></i></a>
 								</div>
 								<div class="col s3 center-align">
-									<i class="material-icons fa fa-trash  fa-lg"></i>
+									<a href="${pageContext.request.contextPath}/GestionEmploye?action=delete&id=<%=employe.getIdentifiant()%>"><i class="material-icons fa fa-trash  fa-lg"></i></a>
 								</div>
 							</div>
 						</td>
 					</tr>
-					<tr>
-						<td>Michel</td>
-						<td>michou</td>
-						<td>
-							<div class="row">
-								<div class="col s3 offset-s3 center-align">
-									<i class="material-icons fa fa-pencil fa-lg"></i>
-								</div>
-								<div class="col s3 center-align">
-									<i class="material-icons fa fa-trash  fa-lg"></i>
-								</div>
-							</div>
-						</td>
-					</tr>	
-					<tr>
-						<td>Michel</td>
-						<td>michou</td>
-						<td>
-							<div class="row">
-								<div class="col s3 offset-s3 center-align">
-									<i class="material-icons fa fa-pencil fa-lg"></i>
-								</div>
-								<div class="col s3 center-align">
-									<i class="material-icons fa fa-trash  fa-lg"></i>
-								</div>
-							</div>
-						</td>
-					</tr>	
-					<tr>
-						<td>Michel</td>
-						<td>michou</td>
-						<td>
-							<div class="row">
-								<div class="col s3 offset-s3 center-align">
-									<i class="material-icons fa fa-pencil fa-lg"></i>
-								</div>
-								<div class="col s3 center-align">
-									<i class="material-icons fa fa-trash  fa-lg"></i>
-								</div>
-							</div>
-						</td>
-					</tr>	
-					<tr>
-						<td>Michel</td>
-						<td>michou</td>
-						<td>
-							<div class="row">
-								<div class="col s3 offset-s3 center-align">
-									<i class="material-icons fa fa-pencil fa-lg"></i>
-								</div>
-								<div class="col s3 center-align">
-									<i class="material-icons fa fa-trash  fa-lg"></i>
-								</div>
-							</div>
-						</td>
-					</tr>	
-					<tr>
-						<td>Michel</td>
-						<td>michou</td>
-						<td>
-							<div class="row">
-								<div class="col s3 offset-s3 center-align">
-									<i class="material-icons fa fa-pencil fa-lg"></i>
-								</div>
-								<div class="col s3 center-align">
-									<i class="material-icons fa fa-trash  fa-lg"></i>
-								</div>
-							</div>
-						</td>
-					</tr>	
-					<tr>
-						<td>Michel</td>
-						<td>michou</td>
-						<td>
-							<div class="row">
-								<div class="col s3 offset-s3 center-align">
-									<i class="material-icons fa fa-pencil fa-lg"></i>
-								</div>
-								<div class="col s3 center-align">
-									<i class="material-icons fa fa-trash  fa-lg"></i>
-								</div>
-							</div>
-						</td>
-					</tr>	
-					<tr>
-						<td>Michel</td>
-						<td>michou</td>
-						<td>
-							<div class="row">
-								<div class="col s3 offset-s3 center-align">
-									<i class="material-icons fa fa-pencil fa-lg"></i>
-								</div>
-								<div class="col s3 center-align">
-									<i class="material-icons fa fa-trash  fa-lg"></i>
-								</div>
-							</div>
-						</td>
-					</tr>	
-					<tr>
-						<td>Michel</td>
-						<td>michou</td>
-						<td>
-							<div class="row">
-								<div class="col s3 offset-s3 center-align">
-									<i class="material-icons fa fa-pencil fa-lg"></i>
-								</div>
-								<div class="col s3 center-align">
-									<i class="material-icons fa fa-trash  fa-lg"></i>
-								</div>
-							</div>
-						</td>
-					</tr>	
-					<tr>
-						<td>Michel</td>
-						<td>michou</td>
-						<td>
-							<div class="row">
-								<div class="col s3 offset-s3 center-align">
-									<i class="material-icons fa fa-pencil fa-lg"></i>
-								</div>
-								<div class="col s3 center-align">
-									<i class="material-icons fa fa-trash  fa-lg"></i>
-								</div>
-							</div>
-						</td>
-					</tr>	
-					<tr>
-						<td>Michel</td>
-						<td>michou</td>
-						<td>
-							<div class="row">
-								<div class="col s3 offset-s3 center-align">
-									<i class="material-icons fa fa-pencil fa-lg"></i>
-								</div>
-								<div class="col s3 center-align">
-									<i class="material-icons fa fa-trash  fa-lg"></i>
-								</div>
-							</div>
-						</td>
-					</tr>	
-					<tr>
-						<td>Michel</td>
-						<td>michou</td>
-						<td>
-							<div class="row">
-								<div class="col s3 offset-s3 center-align">
-									<i class="material-icons fa fa-pencil fa-lg"></i>
-								</div>
-								<div class="col s3 center-align">
-									<i class="material-icons fa fa-trash  fa-lg"></i>
-								</div>
-							</div>
-						</td>
-					</tr>	
-					<tr>
-						<td>Michel</td>
-						<td>michou</td>
-						<td>
-							<div class="row">
-								<div class="col s3 offset-s3 center-align">
-									<i class="material-icons fa fa-pencil fa-lg"></i>
-								</div>
-								<div class="col s3 center-align">
-									<i class="material-icons fa fa-trash  fa-lg"></i>
-								</div>
-							</div>
-						</td>
-					</tr>	
-					<tr>
-						<td>Michel</td>
-						<td>michou</td>
-						<td>
-							<div class="row">
-								<div class="col s3 offset-s3 center-align">
-									<i class="material-icons fa fa-pencil fa-lg"></i>
-								</div>
-								<div class="col s3 center-align">
-									<i class="material-icons fa fa-trash  fa-lg"></i>
-								</div>
-							</div>
-						</td>
-					</tr>	
-					<tr>
-						<td>Michel</td>
-						<td>michou</td>
-						<td>
-							<div class="row">
-								<div class="col s3 offset-s3 center-align">
-									<i class="material-icons fa fa-pencil fa-lg"></i>
-								</div>
-								<div class="col s3 center-align">
-									<i class="material-icons fa fa-trash  fa-lg"></i>
-								</div>
-							</div>
-						</td>
-					</tr>	
-					<tr>
-						<td>Michel</td>
-						<td>michou</td>
-						<td>
-							<div class="row">
-								<div class="col s3 offset-s3 center-align">
-									<i class="material-icons fa fa-pencil fa-lg"></i>
-								</div>
-								<div class="col s3 center-align">
-									<i class="material-icons fa fa-trash  fa-lg"></i>
-								</div>
-							</div>
-						</td>
-					</tr>					
+					<%} %>			
 				</tbody>
 		    </table>
 		    <div class="row">
 				<br >
 				<div class="col s10 offset-s1">
-					<a class="waves-effect waves-light btn btn-large btn-block deep-purple lighten-1"><b class="">ajouter</b></a>
+					<a class="waves-effect waves-light btn btn-large btn-block deep-purple lighten-1" href="${pageContext.request.contextPath}/GestionEmploye?action=add"><b >ajouter</b></a>
 				</div>
 			</div>		
 			
