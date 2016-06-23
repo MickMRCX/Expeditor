@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/Deconnexion")
 public class Deconnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final String CONNEXION = "Connexion"; 
+	private final String LOG_IN = "Connexion"; 
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -45,7 +45,7 @@ public class Deconnexion extends HttpServlet {
 		if(session != null){
 			session.invalidate();
 		}		    
-		request.getRequestDispatcher(CONNEXION).forward(request,response);
+		request.getRequestDispatcher(LOG_IN).forward(request,response);
 	}
 
 }
