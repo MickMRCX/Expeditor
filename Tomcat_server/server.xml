@@ -114,17 +114,15 @@
 					directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log"
 					suffix=".txt" />
 
-
-
-				<ResourceLink global="jdbc/Expeditor" name="jdbc/DataSourceExpeditor"
-					type="javax.sql.DataSource" />
-
 				<Realm className="org.apache.catalina.realm.DataSourceRealm"
 					dataSourceName="jdbc/Expeditor" resourceName="AuthentificationRealm"
 					roleNameCol="Libelle" userCredCol="MotDePasse" userNameCol="Login"
 					userRoleTable="Droits" userTable="Utilisateurs" />
 				<Context docBase="Expeditor" path="/Expeditor" reloadable="true"
-					source="org.eclipse.jst.jee.server:Expeditor" />
+					source="org.eclipse.jst.jee.server:Expeditor">
+					<ResourceLink global="jdbc/Expeditor" name="jdbc/DataSourceExpeditor"
+						type="javax.sql.DataSource" />
+				</Context>
 			</Host>
 		</Engine>
 	</Service>
