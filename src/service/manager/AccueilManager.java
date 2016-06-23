@@ -1,7 +1,6 @@
 package service.manager;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -11,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dal.ICommandeDAL;
+import dal.impl.DALFactory;
 import dto.LigneCommandeManager;
 
 /**
@@ -49,7 +50,8 @@ public class AccueilManager extends HttpServlet {
 
 	private void processExecute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<LigneCommandeManager> commandes = new ArrayList<LigneCommandeManager>();//DAL
+		ICommandeDAL commandeDAL = DALFactory.getCommandeDAL();
+		List<LigneCommandeManager> commandes = commandeDAL.getDisplayList();
 		request.setAttribute("commandes", commandes);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(ACCUEIL_MANAGER);
 		requestDispatcher.forward(request, response);
