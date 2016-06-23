@@ -32,8 +32,5 @@ public class LigneCommandeManager {
 		this.etat = etat.toString();
 		this.nomEmploye = nomEmploye;
 	}
-	
-	
-	
 
 }

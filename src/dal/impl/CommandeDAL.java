@@ -11,6 +11,7 @@ import java.util.List;
 
 import dal.AccesBase;
 import dal.ICommandeDAL;
+import dto.LigneCommandeArticle;
 import dto.LigneCommandeManager;
 import dto.LigneStatistiques;
 import dto.Statistiques;
@@ -43,6 +44,9 @@ public class CommandeDAL implements ICommandeDAL {
 
 	@Override
 	public Commande getOneByID(int id) {
+		CommandeArticleDAL commandeArticleDAL = new CommandeArticleDAL();
+		List<LigneCommandeArticle> lignes = new ArrayList<LigneCommandeArticle>();
+		
 		Commande retour = null;
 		Connection cnx = null;
 		try {
@@ -56,7 +60,10 @@ public class CommandeDAL implements ICommandeDAL {
 				String nom_Client = resultat.getString("nom_Client");
 				String adresse = resultat.getString("adresse");
 				Etats etat = Utilities.getEtat(resultat.getInt("etat"));
-				retour = new Commande(identifiant, date_Commande, nom_Client, adresse, etat);
+				
+				lignes = commandeArticleDAL.getAllByCommande(identifiant);
+				
+				retour = new Commande(identifiant, date_Commande, nom_Client, adresse, etat, lignes);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -74,6 +81,9 @@ public class CommandeDAL implements ICommandeDAL {
 
 	@Override
 	public List<Commande> getAll() {
+		CommandeArticleDAL commandeArticleDAL = new CommandeArticleDAL();
+		List<LigneCommandeArticle> lignes = new ArrayList<LigneCommandeArticle>();
+		
 		List<Commande> retour = null;
 		Connection cnx = null;
 		try {
@@ -87,7 +97,10 @@ public class CommandeDAL implements ICommandeDAL {
 				String nom_Client = resultat.getString("nom_Client");
 				String adresse = resultat.getString("adresse");
 				Etats etat = Utilities.getEtat(resultat.getInt("etat"));
-				Commande c = new Commande(identifiant, date_Commande, nom_Client, adresse, etat);
+				
+				lignes = commandeArticleDAL.getAllByCommande(identifiant);
+				
+				Commande c = new Commande(identifiant, date_Commande, nom_Client, adresse, etat, lignes);
 				retour.add(c);
 			}
 		} catch (SQLException e) {
