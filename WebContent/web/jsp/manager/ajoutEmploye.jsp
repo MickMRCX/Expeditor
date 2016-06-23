@@ -58,8 +58,8 @@
 						<div class="col s5 offset-s1">
 							<a class="waves-effect waves-light btn btn-large btn-block #ff5252 red accent-2" href="${pageContext.request.contextPath}/ListeEmploye">annuler</a>
 						</div>
-						<div class="col s5 ">
-							<input type="button" value="ajouter" class="waves-effect waves-light btn btn-large btn-block deep-purple lighten-1" onclick="javascript:checkOnSubmit()">
+						<div class="col s5 " onclick="javascript:checkOnSubmit()">
+							<input type="button" value="ajouter" class="waves-effect waves-light btn btn-large btn-block deep-purple lighten-1">
 						</div>
 		    		</div>
 		    	</form>
