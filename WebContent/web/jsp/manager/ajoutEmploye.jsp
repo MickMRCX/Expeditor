@@ -36,7 +36,7 @@
 		    		<div class="row">
 		    			<div class="input-field col s10 offset-s1">
 		    				  <%if( employe != null){%>
-					          <input id="loginEmploye" name="loginEmploye" type="text" value="<%=employe.getLogin()%>" class="validate">
+					          <input disabled id="loginEmploye" name="loginEmploye" type="text" value="<%=employe.getLogin()%>" class="validate">
 					          <%}else{ %>
 					          <input id="loginEmploye" name="loginEmploye" type="text" class="validate">
 					          <%} %>
