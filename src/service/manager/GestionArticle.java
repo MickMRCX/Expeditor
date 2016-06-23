@@ -52,7 +52,7 @@ public class GestionArticle extends HttpServlet {
 		RequestDispatcher requestDispatcher = null;
 		if (action.equalsIgnoreCase(ACTION_ADD)) {
 				
-			requestDispatcher = request.getRequestDispatcher("/web/jsp/manager/ajoutEmploye.jsp");
+			requestDispatcher = request.getRequestDispatcher("/web/jsp/manager/ajoutArticle.jsp");
 	
 		}else if(action.equalsIgnoreCase(ACTION_MODIFY)){
 			Article article = dal.getOneByID(Integer.valueOf(request.getParameter(ID)));

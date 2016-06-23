@@ -37,7 +37,7 @@ public class ListeArticles extends HttpServlet {
 		IArticleDAL dal = DALFactory.getArticleDAL();
 		List<Article> articles = dal.getAll();
 		request.setAttribute("articles", articles);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/web/jsp/employe/employe.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/web/jsp/manager/gestionArticles.jsp");
 		requestDispatcher.forward(request, response);
 	}
 
