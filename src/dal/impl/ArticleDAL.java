@@ -11,6 +11,7 @@ import java.util.List;
 import dal.AccesBase;
 import dal.IArticleDAL;
 import model.Article;
+import model.Utilisateur;
 
 public class ArticleDAL implements IArticleDAL{
 
@@ -33,6 +34,7 @@ public class ArticleDAL implements IArticleDAL{
 			+ "WHERE Identifiant = ?";
 
 	private final String DELETE = "DELETE FROM Articles WHERE Identifiant = ?";
+	
 	
 	ArticleDAL(){
 		
