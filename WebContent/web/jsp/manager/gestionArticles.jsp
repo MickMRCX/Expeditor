@@ -44,7 +44,7 @@
 		    <div class="row">
 				<br >
 				<div class="col s10 offset-s1">
-					<a class="waves-effect waves-light btn btn-large btn-block deep-purple lighten-1"><b class="">ajouter</b></a>
+					<a class="waves-effect waves-light btn btn-large btn-block deep-purple lighten-1" href="${pageContext.request.contextPath}/GestionArticle"><b class="">ajouter</b></a>
 				</div>
 			</div>		
 			
