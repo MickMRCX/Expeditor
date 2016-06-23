@@ -1,8 +1,8 @@
 			<ul id="slide-out" class="side-nav fixed deep-orange lighten-2 z-depth-0">
-				<li><a class="tooltipped" data-position="right" data-delay="200" data-tooltip="Gestion des commandes" href="#"><i class="material-icons fa fa-files-o small"></i></a></li>
+				<li><a class="tooltipped" data-position="right" data-delay="200" data-tooltip="Gestion des commandes" href="${pageContext.request.contextPath}/AccueilManager"><i class="material-icons fa fa-files-o small"></i></a></li>
 				<li><a class="tooltipped" data-position="right" data-delay="200" data-tooltip="Statistiques" href="${pageContext.request.contextPath}/Statistiques"><i class="material-icons fa fa-tasks small"></i></a></li>
-				<li><a class="tooltipped" data-position="right" data-delay="200" data-tooltip="Gestion d'equipe" href="#"><i class=" material-icons fa fa-users small"></i></a></li>
-				<li><a class="tooltipped" data-position="right" data-delay="200" data-tooltip="Gestion des articles" href="#"><i class="material-icons fa fa-shopping-cart small"></i></a></li>
+				<li><a class="tooltipped" data-position="right" data-delay="200" data-tooltip="Gestion d'equipe" href="${pageContext.request.contextPath}/ListeEmploye"><i class=" material-icons fa fa-users small"></i></a></li>
+				<li><a class="tooltipped" data-position="right" data-delay="200" data-tooltip="Gestion des articles" href="${pageContext.request.contextPath}/ListeArticles"><i class="material-icons fa fa-shopping-cart small"></i></a></li>
 				<li><a class="tooltipped modal-trigger" data-position="right" data-delay="200" data-tooltip="Ajout du csv" href="#fileSelect"><i class="material-icons fa fa-file-excel-o small"></i></a></li>
 			</ul>
 			<div class="fixed-action-btn hide-on-large-only" style="top: 54px; left: 24px;">
