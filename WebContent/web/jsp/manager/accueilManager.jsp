@@ -20,6 +20,8 @@
 		        </thead>
 		        <tbody>
 					<%
+		        	if(request.getAttribute("commandes") != null){
+
 						List<LigneCommandeManager> commandes = (List<LigneCommandeManager>)request.getAttribute("commandes");
 						for(LigneCommandeManager commande : commandes){
 					%>
@@ -28,7 +30,8 @@
 						<td><%=commande.getEtat()%></td>
 						<td><%=commande.getNomEmploye()%></td>
 					</tr>
-					<%}%>					
+					<%}
+					}%>					
 				</tbody>
 		    </table>	
 			
