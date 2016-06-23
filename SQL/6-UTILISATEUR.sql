@@ -1,7 +1,7 @@
 USE [Expeditor]
 GO
 
-/****** Object:  Table [dbo].[Utilisateurs]    Script Date: 21/06/2016 14:02:51 ******/
+/****** Object:  Table [dbo].[Utilisateurs]    Script Date: 23/06/2016 11:13:25 ******/
 SET ANSI_NULLS ON
 GO
 
@@ -16,11 +16,12 @@ CREATE TABLE [dbo].[Utilisateurs](
 	[Nom] [varchar](100) NOT NULL,
 	[Login] [varchar](100) NOT NULL,
 	[MotDePasse] [ntext] NOT NULL,
+	[Archive] [bit] NOT NULL,
  CONSTRAINT [PK__Utilisat__DD380E4E4A7A85CD] PRIMARY KEY CLUSTERED 
 (
 	[Identifiant] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
-UNIQUE NONCLUSTERED 
+ CONSTRAINT [UQ__Utilisat__5E55825B839BA397] UNIQUE NONCLUSTERED 
 (
 	[Login] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
