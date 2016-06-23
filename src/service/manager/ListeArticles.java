@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dal.IArticleDAL;
+import dal.impl.DALFactory;
 import model.Article;
 
 /**
@@ -32,9 +34,10 @@ public class ListeArticles extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Article> articles = new ArrayList<Article>();//DAL
+		IArticleDAL dal = DALFactory.getArticleDAL();
+		List<Article> articles = dal.getAll();
 		request.setAttribute("articles", articles);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Expeditor/WebContent/web/jsp/employe/employe.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/web/jsp/employe/employe.jsp");
 		requestDispatcher.forward(request, response);
 	}
 
