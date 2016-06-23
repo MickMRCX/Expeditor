@@ -46,31 +46,31 @@
     	<role-name>employe</role-name>
     </auth-constraint>
   </security-constraint>
-  <security-constraint>
-    <web-resource-collection>
-      <web-resource-name>Accès restreint</web-resource-name>
-      <description></description>
-      <url-pattern>/AccueilManager</url-pattern>
-      <url-pattern>/GestionArticle</url-pattern>
-      <url-pattern>/GestionEmploye</url-pattern>
-      <url-pattern>/ListeArticles</url-pattern>
-      <url-pattern>/ListeEmploye</url-pattern>
-      <url-pattern>/Statistiques</url-pattern>
-    </web-resource-collection>
-    <auth-constraint>
-      <role-name>manager</role-name>
-    </auth-constraint>
-  </security-constraint>
-  <security-constraint>
-    <web-resource-collection>
-      <web-resource-name>Accès restreint</web-resource-name>
-      <description></description>
-      <url-pattern>/AccueilEmploye</url-pattern>    
-    </web-resource-collection>
-    <auth-constraint>
-      <role-name>employe</role-name>
-    </auth-constraint>
-  </security-constraint>
+<!--   <security-constraint> -->
+<!--     <web-resource-collection> -->
+<!--       <web-resource-name>Accès restreint</web-resource-name> -->
+<!--       <description></description> -->
+<!--       <url-pattern>/AccueilManager</url-pattern> -->
+<!--       <url-pattern>/GestionArticle</url-pattern> -->
+<!--       <url-pattern>/GestionEmploye</url-pattern> -->
+<!--       <url-pattern>/ListeArticles</url-pattern> -->
+<!--       <url-pattern>/ListeEmploye</url-pattern> -->
+<!--       <url-pattern>/Statistiques</url-pattern> -->
+<!--     </web-resource-collection> -->
+<!--     <auth-constraint> -->
+<!--       <role-name>manager</role-name> -->
+<!--     </auth-constraint> -->
+<!--   </security-constraint> -->
+<!--   <security-constraint> -->
+<!--     <web-resource-collection> -->
+<!--       <web-resource-name>Accès restreint</web-resource-name> -->
+<!--       <description></description> -->
+<!--       <url-pattern>/AccueilEmploye</url-pattern>     -->
+<!--     </web-resource-collection> -->
+<!--     <auth-constraint> -->
+<!--       <role-name>employe</role-name> -->
+<!--     </auth-constraint> -->
+<!--   </security-constraint> -->
   <login-config>
     <auth-method>FORM</auth-method>
     <realm-name>Authentification</realm-name>

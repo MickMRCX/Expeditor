@@ -19,7 +19,7 @@ import dto.LigneCommandeManager;
 @WebServlet("/AccueilManager")
 public class AccueilManager extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private final String ACCUEIL_MANAGER = "/web/jsp/manager/acceuilManager.jsp";
+	private final String ACCUEIL_MANAGER = "/web/jsp/manager/accueilManager.jsp";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
