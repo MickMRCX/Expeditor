@@ -30,9 +30,11 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 	private final String INSERT = "INSERT INTO Utilisateurs VALUES(?,?,?,?)";
 	private final String INSERT_DROITS = "INSERT INTO Droits VALUES(?,'employe')";
 
-	private final String UPDATE = "UPDATE Utilisateurs SET Nom = ?, Login = ?, MotDePasse = ? "
+	private final String UPDATE = "UPDATE Utilisateurs SET Nom = ?, MotDePasse = ? "
 			+ "WHERE Identifiant = ?";
-	private final String UPDATE_DROPITS = "UPDATE Droits SET Login = ? WHERE Login = ?";
+	
+	// private final String UPDATE_DROPITS = "UPDATE Droits SET Login = ? WHERE
+	// Login = ?";
 
 	private final String DELETE = "UPDATE Utilisateurs SET Archive=1 " + "WHERE Identifiant = ?";
 
@@ -142,9 +144,8 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 				cnx = AccesBase.getConnection();
 				PreparedStatement requete = cnx.prepareStatement(UPDATE);
 				requete.setString(1, obj.getNom());
-				requete.setString(2, obj.getLogin());
-				requete.setString(3, obj.getMotDePasse());
-				requete.setInt(4, obj.getIdentifiant());
+				requete.setString(2, obj.getMotDePasse());
+				requete.setInt(3, obj.getIdentifiant());
 				requete.executeUpdate();
 			}
 		} catch (SQLException e) {
@@ -242,26 +243,26 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 		return retour;
 	}
 
-	@Override
-	public void updateDroits(String nouveauLogin, String ancienLogin) {
-		Connection cnx = null;
-		try {
-			cnx = AccesBase.getConnection();
-			PreparedStatement requete = cnx.prepareStatement(UPDATE_DROPITS);
-			requete.setString(1, nouveauLogin);
-			requete.setString(2, ancienLogin);
-			requete.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				if (cnx != null && !cnx.isClosed()) {
-					cnx.close();
-				}
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
-		}
-	}
+	// @Override
+	// public void updateDroits(String nouveauLogin, String ancienLogin) {
+	// Connection cnx = null;
+	// try {
+	// cnx = AccesBase.getConnection();
+	// PreparedStatement requete = cnx.prepareStatement(UPDATE_DROPITS);
+	// requete.setString(1, nouveauLogin);
+	// requete.setString(2, ancienLogin);
+	// requete.executeUpdate();
+	// } catch (SQLException e) {
+	// e.printStackTrace();
+	// } finally {
+	// try {
+	// if (cnx != null && !cnx.isClosed()) {
+	// cnx.close();
+	// }
+	// } catch (SQLException e) {
+	// e.printStackTrace();
+	// }
+	// }
+	// }
 
 }
