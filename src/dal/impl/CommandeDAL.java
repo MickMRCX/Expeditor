@@ -205,7 +205,8 @@ public class CommandeDAL implements ICommandeDAL {
 			while (resultat.next()) {
 				
 				Integer idCommande = resultat.getInt("identifiant");
-				Etats etat = Utilities.getEtat(resultat.getInt("etat"));
+				int tata = resultat.getInt("Etat_id");
+				Etats etat = Utilities.getEtat(tata);
 				String nomEmploye = resultat.getString("nom");
 				LigneCommandeManager ligne = new LigneCommandeManager(idCommande, etat, nomEmploye);
 				retour.add(ligne);
