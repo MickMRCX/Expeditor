@@ -30,8 +30,8 @@ function checkPasswordMatch(){
 	}
 }
 
-function checkOnSubmit()
-{
+function checkOnSubmit(){
+	
 	var login = $("#loginEmploye").val();
 	var nom = $("#nomEmploye").val();
 	var mdp = $("#mdp").val();
@@ -64,8 +64,6 @@ function checkOnSubmit()
 	else{
 		$('#formEmploye').submit();
 	}
-
-	
 }
 
 
