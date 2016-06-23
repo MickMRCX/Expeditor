@@ -12,6 +12,8 @@
 		<main class="side">
 			<div class="scroll-page">
 				<%
+	        	if(request.getAttribute("statistiques") != null){
+
 					Statistiques statistiques = (Statistiques) request.getAttribute("statistiques");
 					for(LigneStatistiques ligne : statistiques.getLignes())
 					{
@@ -30,7 +32,8 @@
 					  </div>
 					</div>
 				</div>
-				<%}%>
+				<%}
+				}%>
 			</div>
 			
 		</main>

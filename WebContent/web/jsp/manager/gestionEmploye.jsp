@@ -19,6 +19,7 @@
 		        </thead>
 		        <tbody>
 		        	<%
+		        	if(request.getAttribute("employes") != null){
 		        		List<Utilisateur> employes = (List<Utilisateur>)request.getAttribute("employes");
 		        		for(Utilisateur employe : employes)
 		        		{
@@ -37,7 +38,8 @@
 							</div>
 						</td>
 					</tr>
-					<%} %>			
+					<%} 
+					}%>			
 				</tbody>
 		    </table>
 		    <div class="row">
