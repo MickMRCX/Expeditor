@@ -37,7 +37,7 @@ public class ListeEmploye extends HttpServlet {
 		IUtilisateurDAL userDAl = DALFactory.getUtilisateurDAL();		
 		List<Utilisateur> employes = userDAl.getEmployes();
 		request.setAttribute("employes", employes);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Expeditor/WebContent/web/jsp/manager/gestionEmploye.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/web/jsp/manager/gestionEmploye.jsp");
 		requestDispatcher.forward(request, response);
 	}
 
