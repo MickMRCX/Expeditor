@@ -68,6 +68,35 @@ public class ArticleDAL implements IArticleDAL{
 		}
 		return retour;
 	}
+	
+	@Override
+	public Article getOneByLibelle(String lbl) {
+		Article retour = null;
+		Connection cnx = null;
+		try {
+			cnx = AccesBase.getConnection();
+			PreparedStatement requete = cnx.prepareStatement(SELECT_BY_LIBELLE);
+			requete.setString(1, lbl);
+			ResultSet resultat = requete.executeQuery();
+			while (resultat.next()) {
+				int identifiant = resultat.getInt("Identifiant");
+				String libelle = resultat.getString("Libelle");
+				int poids = resultat.getInt("Poids");
+				retour = new Article(identifiant, libelle, poids);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (cnx != null && !cnx.isClosed()) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return retour;
+	}
 
 	@Override
 	public List<Article> getAll() {
