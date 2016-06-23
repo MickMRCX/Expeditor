@@ -28,7 +28,7 @@ public class ArticleDAL implements IArticleDAL{
 
 	private final String SELECT_ALL = "SELECT Identifiant, Libelle, Poids " + "FROM Articles";
 
-	private final String INSERT = "INSERT INTO Articles VALUES(?,?,?)";
+	private final String INSERT = "INSERT INTO Articles VALUES(?,?)";
 
 	private final String UPDATE = "UPDATE Articles SET Libelle = ?, Poids = ? "
 			+ "WHERE Identifiant = ?";
