@@ -34,6 +34,9 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 
 	private final String DELETE = "DELETE FROM Utilisateurs WHERE Identifiant = ?";
 	
+	private final String SELECT_EMPLOYES = "SELECT Identifiant, Nom, Login, MotDePasse FROM Utilisateurs u INNER JOIN Droits d ON u.Login = d.Login";
+
+	
 	UtilisateurDAL() {
 		
 	}
@@ -187,6 +190,37 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 				String nom = resultat.getString("Nom");
 				String mdp = resultat.getString("MotDePasse");
 				retour = new Utilisateur(identifiant, nom, login, mdp);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (cnx != null && !cnx.isClosed()) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return retour;
+	}
+
+	@Override
+	public List<Utilisateur> getEmployes() {
+		List<Utilisateur> retour = null;
+		Connection cnx = null;
+		try {
+			cnx = AccesBase.getConnection();
+			PreparedStatement requete = cnx.prepareStatement(SELECT_EMPLOYES);
+			ResultSet resultat = requete.executeQuery();
+			retour = new ArrayList<>();
+			while (resultat.next()) {
+				int identifiant = resultat.getInt("Identifiant");
+				String nom = resultat.getString("Nom");
+				String login = resultat.getString("Login");
+				String mdp = resultat.getString("MotDePasse");
+				Utilisateur u = new Utilisateur(identifiant, nom, login, mdp);
+				retour.add(u);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
