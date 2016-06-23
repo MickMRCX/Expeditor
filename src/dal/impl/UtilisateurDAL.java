@@ -34,16 +34,14 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 			+ "WHERE Identifiant = ?";
 	private final String UPDATE_DROPITS = "UPDATE Droits SET Login = ? WHERE Login = ?";
 
-	private final String DELETE = "UPDATE Utilisateurs SET Archive=1 "
-			+ "WHERE Identifiant = ?";
-	
+	private final String DELETE = "UPDATE Utilisateurs SET Archive=1 " + "WHERE Identifiant = ?";
+
 	private final String SELECT_EMPLOYES = "SELECT Identifiant, Nom, u.Login, MotDePasse FROM Utilisateurs u INNER JOIN Droits d ON u.Login = d.Login WHERE d.Libelle = 'employe' and u.Archive = 0";
 
-	
 	UtilisateurDAL() {
-		
+
 	}
-	
+
 	@Override
 	public Utilisateur getOneByID(int id) {
 		Utilisateur retour = null;
@@ -115,13 +113,13 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 				requete.setString(1, obj.getNom());
 				requete.setString(2, obj.getLogin());
 				requete.setString(3, obj.getMotDePasse());
-				requete.setByte(4, (byte)(obj.isArchive()?1:0));
+				requete.setByte(4, (byte) (obj.isArchive() ? 1 : 0));
 				requete.executeUpdate();
-				
+
 				requete = cnx.prepareStatement(INSERT_DROITS);
 				requete.setString(1, obj.getLogin());
 				requete.executeUpdate();
-			}			
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -245,16 +243,14 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 	}
 
 	@Override
-	public void updateDroits(Utilisateur user, String ancienLogin) {
+	public void updateDroits(String nouveauLogin, String ancienLogin) {
 		Connection cnx = null;
 		try {
-			if (user != null) {
-				cnx = AccesBase.getConnection();
-				PreparedStatement requete = cnx.prepareStatement(UPDATE_DROPITS);
-				requete.setString(1, user.getLogin());
-				requete.setString(2, ancienLogin);
-				requete.executeUpdate();
-			}
+			cnx = AccesBase.getConnection();
+			PreparedStatement requete = cnx.prepareStatement(UPDATE_DROPITS);
+			requete.setString(1, nouveauLogin);
+			requete.setString(2, ancienLogin);
+			requete.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -265,7 +261,7 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}		
+		}
 	}
 
 }
