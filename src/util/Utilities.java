@@ -19,5 +19,20 @@ public class Utilities {
 		}
 	}
 	
+	public static int getEtatInt(Etats etat){
+		switch (etat) {
+		
+		case AFFECTABLE:
+			return 0;
+		case AFFECTEE:
+			return 1;
+		case EXPEDIEE:
+			return 2;
+		case REAFFECTABLE:
+			return 3;
+		default:
+			return 0;
+		}
+	}
 
 }

@@ -3,8 +3,7 @@ package dto;
 public class LigneStatistiques {
 	
 	private String nomEmploye;
-	private int quantiteActuelle;
-	private int quantiteCommande;
+	private int nbCommandes;
 	
 	public String getNomEmploye() {
 		return nomEmploye;
@@ -12,19 +11,16 @@ public class LigneStatistiques {
 	public void setNomEmploye(String nomEmploye) {
 		this.nomEmploye = nomEmploye;
 	}
-	public int getQuantiteActuelle() {
-		return quantiteActuelle;
+	public int getNbCommandes() {
+		return nbCommandes;
 	}
-	public void setQuantiteActuelle(int quantiteActuelle) {
-		this.quantiteActuelle = quantiteActuelle;
+	public void setNbCommandes(int nbCommandes) {
+		this.nbCommandes = nbCommandes;
 	}
-	public int getQuantiteCommande() {
-		return quantiteCommande;
+	public LigneStatistiques(String nomEmploye, int nbCommandes) {
+		super();
+		this.nomEmploye = nomEmploye;
+		this.nbCommandes = nbCommandes;
 	}
-	public void setQuantiteCommande(int quantiteCommande) {
-		this.quantiteCommande = quantiteCommande;
-	}
-	
-	
-	
+		
 }
