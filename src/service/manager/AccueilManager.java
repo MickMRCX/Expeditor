@@ -49,9 +49,8 @@ public class AccueilManager extends HttpServlet {
 
 	private void processExecute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// List<LigneCommandeManager> commandes = new
-		// ArrayList<LigneCommandeManager>();//DAL
-		// request.setAttribute("commandes", commandes);
+		List<LigneCommandeManager> commandes = new ArrayList<LigneCommandeManager>();//DAL
+		request.setAttribute("commandes", commandes);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(ACCUEIL_MANAGER);
 		requestDispatcher.forward(request, response);
 	}
