@@ -36,7 +36,7 @@ public class Statistiques extends HttpServlet {
 		ICommandeDAL commandeDAL = DALFactory.getCommandeDAL();
 		dto.Statistiques statistiques = commandeDAL.getStatistiques();
 		request.setAttribute("statistiques", statistiques);
-		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/Expeditor/WebContent/web/jsp/employe/employe.jsp");
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("/web/jsp/employe/employe.jsp");
 		requestDispatcher.forward(request, response);
 		
 	}
