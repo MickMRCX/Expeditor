@@ -34,7 +34,7 @@ public class UtilisateurDAL implements IUtilisateurDAL {
 
 	private final String DELETE = "DELETE FROM Utilisateurs WHERE Identifiant = ?";
 	
-	private final String SELECT_EMPLOYES = "SELECT Identifiant, Nom, Login, MotDePasse FROM Utilisateurs u INNER JOIN Droits d ON u.Login = d.Login WHERE d.Libelle = 'employe'";
+	private final String SELECT_EMPLOYES = "SELECT Identifiant, Nom, u.Login, MotDePasse FROM Utilisateurs u INNER JOIN Droits d ON u.Login = d.Login WHERE d.Libelle = 'employe' and u.Archive = 0";
 
 	
 	UtilisateurDAL() {
