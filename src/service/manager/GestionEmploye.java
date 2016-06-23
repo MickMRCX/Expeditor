@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import dal.IUtilisateurDAL;
 import dal.impl.DALFactory;
-import dal.impl.UtilisateurDAL;
 import model.Utilisateur;
 
 /**
@@ -26,6 +25,7 @@ public class GestionEmploye extends HttpServlet {
 	private static final String ACTION_ADD = "add";
 	
 	private static final String ID = "id";
+	private static final String LOGIN_OLD = "ancienLoginEmploye";
 	private static final String LOGIN = "loginEmploye";
 	private static final String NOM = "nomEmploye";
 	private static final String MOT_DE_PASSE = "mdp";
@@ -94,12 +94,13 @@ public class GestionEmploye extends HttpServlet {
 			int identifiant = Integer.valueOf(request.getParameter(ID));
 			String nom = request.getParameter(NOM);
 			String login = request.getParameter(LOGIN);
-			String motDePasse = request.getParameter(MOT_DE_PASSE);			
+			String motDePasse = request.getParameter(MOT_DE_PASSE);		
+			String ancienLogin = request.getParameter(LOGIN_OLD);
 			
 			Utilisateur user = new Utilisateur(identifiant, nom, login, motDePasse);
 			
 			dal.update(user);
-			
+			dal.updateDroits(login, ancienLogin);
 		}
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListeEmploye");
 	    requestDispatcher.forward(request, response); 

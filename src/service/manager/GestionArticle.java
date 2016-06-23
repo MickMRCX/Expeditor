@@ -30,8 +30,8 @@ public class GestionArticle extends HttpServlet {
 	private static final String ACTION_ADD = "add";
 	
 	private static final String ID = "id";
-	private static final String POIDS = "poids";
-	private static final String LIBELLE = "libelle";
+	private static final String POIDS = "poidArticle";
+	private static final String LIBELLE = "nomArticle";
        
     /**
      * @see HttpServlet#HttpServlet()
