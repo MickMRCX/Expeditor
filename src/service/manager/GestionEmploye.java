@@ -26,9 +26,9 @@ public class GestionEmploye extends HttpServlet {
 	private static final String ACTION_ADD = "add";
 	
 	private static final String ID = "id";
-	private static final String LOGIN = "login";
-	private static final String NOM = "nom";
-	private static final String MOT_DE_PASSE = "motDePasse";
+	private static final String LOGIN = "loginEmploye";
+	private static final String NOM = "nomEmploye";
+	private static final String MOT_DE_PASSE = "mdp";
 	
 	private static final long serialVersionUID = 1L;
        
