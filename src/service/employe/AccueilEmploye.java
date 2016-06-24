@@ -11,11 +11,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dal.IArticleDAL;
 import dal.ICommandeDAL;
 import dal.impl.DALFactory;
+import dto.LigneCommandeArticle;
 import model.Article;
 import model.Commande;
 import model.Utilisateur;
+import util.ArticlesCouple;
 
 /**
  * Servlet implementation class AccueilEmploye
@@ -56,11 +59,14 @@ public class AccueilEmploye extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		Utilisateur user = (Utilisateur) request.getSession().getAttribute("user");
 		ICommandeDAL dalCommande = DALFactory.getCommandeDAL();
-		
+		IArticleDAL dalArticle = DALFactory.getArticleDAL();
 		Commande commande = dalCommande.getByEmploye(user.getIdentifiant());
-		List<Article> articles = new ArrayList<Article>(); // appel DAL
+		ArticlesCouple coupleArticle = dalArticle.getArticlesByCommande(commande.getIdentifiant());
+		List<Article> articles = coupleArticle.getArticles();
+		List<LigneCommandeArticle> lignearticles = coupleArticle.getLignesarticles();
 		request.setAttribute("commande", commande);
 		request.setAttribute("articles", articles);
+		request.setAttribute("lignearticles", lignearticles);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(ACCUEIL_EMPLOYE);
 		requestDispatcher.forward(request, response);
 	}
