@@ -100,8 +100,8 @@ function subtractArticleAjax(idArticle,idCommande,url){
 	sendAjax(idArticle,idCommande,$("#qttTraite_" + idArticle).html(),url);
 }
 
-function sendAjax(idArticle,idCommande,qtt,url){
-	$.get( url + "/GestionAjoutAjax?idArticle=" + idArticle + "&idCommande="  + idCommande + "&qtt="+qtt);
+function sendAjax(idArticlePa,idCommandePa,qttPa,url){
+	$.get( url + "/GestionAjoutAjax", {idArticle:idArticlePa,idCommande:idCommandePa,qtt:qttPa} );
 }
 
 function uploadCSV(){
