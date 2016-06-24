@@ -88,6 +88,18 @@ function checkOnArticle(){
 	}
 }
 
+function addArticleAjax(idArticle){
+	$("#qttTraite_" + idArticle).html($("#qttTraite_" + idArticle).val() + 1);
+	$("#poidTotal_" + idArticle).html($("#qttTraite_" + idArticle).val() * $("#poidArticle_"+ idArticle).val());
+	
+
+}
+
+function subtractArticleAjax(idArticle){
+	$("#qttTraite_" + idArticle).html($("#qttTraite_" + idArticle).val() - 1);
+	$("#poidTotal_" + idArticle).html($("#qttTraite_" + idArticle).val() * $("#poidArticle_"+ idArticle).val());
+}
+
 
 
 $(document).ready(initSideNav);
