@@ -26,14 +26,14 @@ public class CommandeDAL implements ICommandeDAL {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private final String SELECT_BY_ID = "SELECT identifiant, date_Commande, nom_Client, adresse,etat "
+	private final String SELECT_BY_ID = "SELECT identifiant, date_Commande, nom_Client, adresse, Etat_id "
 			+ "FROM Commande WHERE Identifiant = ?";
 
-	private final String SELECT_ALL = "SELECT identifiant, date_Commande, nom_Client, adresse,etat " + "FROM Commande";
+	private final String SELECT_ALL = "SELECT identifiant, date_Commande, nom_Client, adresse, Etat_id " + "FROM Commande";
 
 	private final String INSERT = "INSERT INTO Commande VALUES(?,?,?,?)";
 
-	private final String UPDATE = "UPDATE Commande SET date_Commande = ?, nom_Client = ?, adresse = ?, etat = ? "
+	private final String UPDATE = "UPDATE Commande SET date_Commande = ?, nom_Client = ?, adresse = ?, Etat_id = ? "
 			+ "WHERE Identifiant = ?";
 
 	private final String DELETE = "DELETE FROM Commande WHERE Identifiant = ?";

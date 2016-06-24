@@ -27,7 +27,7 @@ public class CommandeArticleDAL implements IRepository<LigneCommandeArticle> {
 
 	private final String INSERT = "INSERT INTO Commande_Article VALUES(?,?,?,?)";
 
-	private final String UPDATE = "UPDATE Commande_Article SET Quantite_carton = ?, "
+	private final String UPDATE = "UPDATE Commande_Article SET Quantite_carton = ? "
 			+ "WHERE Commande_id = ? AND Article_id = ?";
 
 	private final String DELETE_BY_COMMANDE = "DELETE FROM Commande_Article WHERE = Commande_id = ?";
