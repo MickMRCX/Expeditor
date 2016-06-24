@@ -12,6 +12,14 @@ public class Commande {
 	private String adresse;
 	private Etats etat;
 	private List<LigneCommandeArticle> article_Commande;
+	
+	public Commande(int identifiant, Date date_Commande, String nom_Client, String adresse, Etats etat) {
+		super();
+		this.date_Commande = date_Commande;
+		this.nom_Client = nom_Client;
+		this.adresse = adresse;
+		this.etat = etat;
+	}
 
 	public Commande(Date date_Commande, String nom_Client, String adresse, Etats etat, List<LigneCommandeArticle> article_Commande) {
 		super();

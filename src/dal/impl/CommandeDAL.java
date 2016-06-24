@@ -41,7 +41,12 @@ public class CommandeDAL implements ICommandeDAL {
 	private final String SELECT_DISPLAYLIST = "SELECT c.Identifiant, u.Nom,c.Etat_id FROM Commande_Traitee ct INNER JOIN Commande c ON ct.Commande_id = c.Identifiant INNER JOIN Utilisateurs u ON ct.Utilisateur_id = u.Identifiant ORDER BY c.Identifiant";
 	
 	private final String SELECT_STATS = "SELECT u.Nom,COUNT(DISTINCT c.Identifiant) as nbCommandes FROM Commande_Traitee ct INNER JOIN Commande c ON ct.Commande_id = c.Identifiant INNER JOIN Utilisateurs u ON ct.Utilisateur_id = u.Identifiant GROUP BY u.Identifiant,u.Nom";
+	
+	private final String SELECT_AFFECTABLE = "SELECT TOP 1 c.Identifiant ,c.Date_Commande ,c.Nom_Client       ,c.Adresse       ,c.Etat_id FROM Commande c WHERE c.Etat_id=1 ORDER BY Date_Commande DESC";
 
+	private final String SELECT_AFFECTEE = "SELECT TOP 1 c.Identifiant ,c.Date_Commande ,c.Nom_Client       ,c.Adresse       ,c.Etat_id FROM Commande_Traitee ct INNER JOIN Commande c ON ct.Commande_id = c.Identifiant WHERE c.Etat_id=2 AND ct.Utilisateur_id=? ORDER BY c.Identifiant";
+
+	
 	@Override
 	public Commande getOneByID(int id) {
 		CommandeArticleDAL commandeArticleDAL = new CommandeArticleDAL();
@@ -255,6 +260,52 @@ public class CommandeDAL implements ICommandeDAL {
 			}
 		}
 		return new Statistiques(nbTotal, lignes);
+	}
+
+	@Override
+	public Commande getByEmploye(int idEmploye) {		
+		Commande retour = null;
+		Connection cnx = null;
+		try {
+			cnx = AccesBase.getConnection();
+			PreparedStatement requete = cnx.prepareStatement(SELECT_AFFECTEE);
+			requete.setInt(1, idEmploye);
+			ResultSet resultat = requete.executeQuery();
+			while (resultat.next()) {
+				int identifiant = resultat.getInt("identifiant");
+				Date date_Commande = resultat.getDate("date_Commande");
+				String nom_Client = resultat.getString("nom_Client");
+				String adresse = resultat.getString("adresse");
+				Etats etat = Utilities.getEtat(resultat.getInt("etat"));				
+				retour = new Commande(identifiant, date_Commande, nom_Client, adresse, etat);
+			}
+			
+			if (retour ==null) {
+				requete = cnx.prepareStatement(SELECT_AFFECTABLE);
+				resultat = requete.executeQuery();
+				while (resultat.next()) {
+					int identifiant = resultat.getInt("identifiant");
+					Date date_Commande = resultat.getDate("date_Commande");
+					String nom_Client = resultat.getString("nom_Client");
+					String adresse = resultat.getString("adresse");
+					Etats etat = Utilities.getEtat(resultat.getInt("etat"));				
+					retour = new Commande(identifiant, date_Commande, nom_Client, adresse, etat);
+				}
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (cnx != null && !cnx.isClosed()) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return retour;
 	}
 
 	

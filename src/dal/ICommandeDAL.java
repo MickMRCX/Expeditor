@@ -9,4 +9,5 @@ import model.Commande;
 public interface ICommandeDAL extends IRepository<Commande> {
 	List<LigneCommandeManager> getDisplayList();
 	Statistiques getStatistiques();
+	Commande getByEmploye(int idEmploye);
 }
