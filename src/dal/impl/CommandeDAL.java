@@ -64,7 +64,7 @@ public class CommandeDAL implements ICommandeDAL {
 				Date date_Commande = resultat.getDate("date_Commande");
 				String nom_Client = resultat.getString("nom_Client");
 				String adresse = resultat.getString("adresse");
-				Etats etat = Utilities.getEtat(resultat.getInt("etat"));
+				Etats etat = Utilities.getEtat(resultat.getInt("Etat_id"));
 				
 				lignes = commandeArticleDAL.getAllByCommande(identifiant);
 				
@@ -101,7 +101,7 @@ public class CommandeDAL implements ICommandeDAL {
 				Date date_Commande = resultat.getDate("date_Commande");
 				String nom_Client = resultat.getString("nom_Client");
 				String adresse = resultat.getString("adresse");
-				Etats etat = Utilities.getEtat(resultat.getInt("etat"));
+				Etats etat = Utilities.getEtat(resultat.getInt("Etat_id"));
 				
 				lignes = commandeArticleDAL.getAllByCommande(identifiant);
 				
