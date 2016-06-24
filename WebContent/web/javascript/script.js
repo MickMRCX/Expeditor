@@ -104,7 +104,7 @@ function sendAjax(idArticlePa,idCommandePa,qttPa,url){
 	$.ajax({
 		  url: url + "/GestionAjoutAjax",
 		  type: "get", //send it through get method
-		  data:{idArticle:idArticlePa,idCommande:idCommandePa,qtt:qttPa},
+		  data:{"idArticle":idArticlePa,"idCommande":idCommandePa,"qtt":qttPa},
 		  success: function(response) {
 		    //Do Something
 		  },
