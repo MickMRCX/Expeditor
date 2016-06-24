@@ -18,9 +18,9 @@
 								Commande c = (Commande) request.getAttribute("commande");
 								List<Article> articles = (List<Article>) request.getAttribute("articles");
 							%>
-							<h2><%=c.getIdentifiant()%> - <%=c.getDate_Commande() %></h2>
-							<h4><%=c.getNom_Client()%></h4>
-							<h4><%=c.getAdresse()%></h4>
+							<h4><%=c.getIdentifiant()%> - <%=c.getDate_Commande() %></h4>
+							<h5><%=c.getNom_Client()%></h5>
+							<h5><%=c.getAdresse()%></h5>
 							<%for(LigneCommandeArticle lca : c.getArticle_commande()){%>
 							<p><%=LigneCommandeArticle.getArticleFromId(lca.getArticle(),articles).getLibelle()%> - <%=lca.getQuantiteCommande()%>
 							<%}
