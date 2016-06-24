@@ -15,6 +15,7 @@ public class Commande {
 	
 	public Commande(int identifiant, Date date_Commande, String nom_Client, String adresse, Etats etat) {
 		super();
+		this.identifiant = identifiant;
 		this.date_Commande = date_Commande;
 		this.nom_Client = nom_Client;
 		this.adresse = adresse;

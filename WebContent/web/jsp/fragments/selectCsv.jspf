@@ -19,7 +19,7 @@
 				 </div>
 			</div>
 			<div class="modal-footer">
-				<a href="UploadCSV" class=" modal-action modal-close waves-effect waves-purple btn-flat">Valider</a>
+				<a href="#!" onclick="uploadCSV()" class=" modal-action modal-close waves-effect waves-purple btn-flat">Valider</a>
 				<a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Annuler</a>
 			</div>
 	  </div>

@@ -89,15 +89,19 @@ function checkOnArticle(){
 }
 
 function addArticleAjax(idArticle){
-	$("#qttTraite_" + idArticle).html($("#qttTraite_" + idArticle).val() + 1);
-	$("#poidTotal_" + idArticle).html($("#qttTraite_" + idArticle).val() * $("#poidArticle_"+ idArticle).val());
+	$("#qttTraite_" + idArticle).html(parseInt($("#qttTraite_" + idArticle).html()) + 1);
+	$("#poidTotal_" + idArticle).html(parseInt($("#qttTraite_" + idArticle).html()) * parseInt($("#poidArticle_"+ idArticle).html()));
 	
 
 }
 
 function subtractArticleAjax(idArticle){
-	$("#qttTraite_" + idArticle).html($("#qttTraite_" + idArticle).val() - 1);
-	$("#poidTotal_" + idArticle).html($("#qttTraite_" + idArticle).val() * $("#poidArticle_"+ idArticle).val());
+	$("#qttTraite_" + idArticle).html(parseInt($("#qttTraite_" + idArticle).html()) - 1);
+	$("#poidTotal_" + idArticle).html(parseInt($("#qttTraite_" + idArticle).html()) * parseInt($("#poidArticle_"+ idArticle).html()));
+}
+
+function uploadCSV(){
+	$("#formCsv").submit();
 }
 
 

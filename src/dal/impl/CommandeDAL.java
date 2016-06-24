@@ -279,7 +279,7 @@ public class CommandeDAL implements ICommandeDAL {
 				Date date_Commande = resultat.getDate("date_Commande");
 				String nom_Client = resultat.getString("nom_Client");
 				String adresse = resultat.getString("adresse");
-				Etats etat = Utilities.getEtat(resultat.getInt("etat"));				
+				Etats etat = Utilities.getEtat(resultat.getInt("Etat_id"));				
 				retour = new Commande(identifiant, date_Commande, nom_Client, adresse, etat);
 			}
 			
@@ -291,7 +291,7 @@ public class CommandeDAL implements ICommandeDAL {
 					Date date_Commande = resultat.getDate("date_Commande");
 					String nom_Client = resultat.getString("nom_Client");
 					String adresse = resultat.getString("adresse");
-					Etats etat = Utilities.getEtat(resultat.getInt("etat"));				
+					Etats etat = Utilities.getEtat(resultat.getInt("Etat_id"));				
 					retour = new Commande(identifiant, date_Commande, nom_Client, adresse, etat);
 				}
 			}

@@ -18,9 +18,9 @@
 								Commande c = (Commande) request.getAttribute("commande");
 								List<Article> articles = (List<Article>) request.getAttribute("articles");
 							%>
-							<h2><%=c.getIdentifiant()%> - <%=c.getDate_Commande() %></h2>
-							<h4><%=c.getNom_Client()%></h4>
-							<h4><%=c.getAdresse()%></h4>
+							<h4><%=c.getIdentifiant()%> - <%=c.getDate_Commande() %></h4>
+							<h5><%=c.getNom_Client()%></h5>
+							<h5><%=c.getAdresse()%></h5>
 							<%for(LigneCommandeArticle lca : c.getArticle_commande()){%>
 							<p><%=LigneCommandeArticle.getArticleFromId(lca.getArticle(),articles).getLibelle()%> - <%=lca.getQuantiteCommande()%>
 							<%}
@@ -56,7 +56,7 @@
 										<td id="poidTotal_<%=a.getIdentifiant()%>"><%=a.getPoids() * lca.getQuantiteTraitee()%></td>
 										<td>
 											<div class="col s3 offset-s3 center-align">
-												<a onclick="substractArticleAjax(<%=a.getIdentifiant()%>)"><i class="material-icons fa fa-minus-square-o fa-lg"></i></a>
+												<a onclick="subtractArticleAjax(<%=a.getIdentifiant()%>)"><i class="material-icons fa fa-minus-square-o fa-lg"></i></a>
 											</div>
 											<div class="col s3 center-align">
 												<a onclick="addArticleAjax(<%=a.getIdentifiant()%>)"><i class="material-icons fa fa-plus-square-o  fa-lg"></i></a>
