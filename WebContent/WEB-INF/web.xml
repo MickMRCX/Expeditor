@@ -36,10 +36,10 @@
     </web-resource-collection>
   </security-constraint>
   <security-constraint>
-  	<web-resource-collection>
-  		<web-resource-name>Accès libre</web-resource-name>
-  		<url-pattern>/j_security_check</url-pattern>
-  	</web-resource-collection>
+    <web-resource-collection>
+      <web-resource-name>Accès libre</web-resource-name>
+      <url-pattern>/j_security_check</url-pattern>
+    </web-resource-collection>
   </security-constraint>
   <security-constraint>
     <web-resource-collection>
@@ -48,8 +48,8 @@
       <url-pattern>/*</url-pattern>
     </web-resource-collection>
     <auth-constraint>
-    	<role-name>manager</role-name>
-    	<role-name>employe</role-name>
+      <role-name>manager</role-name>
+      <role-name>employe</role-name>
     </auth-constraint>
   </security-constraint>
   <security-constraint>
@@ -71,7 +71,7 @@
     <web-resource-collection>
       <web-resource-name>Accès restreint</web-resource-name>
       <description></description>
-      <url-pattern>/AccueilEmploye</url-pattern>    
+      <url-pattern>/AccueilEmploye</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>employe</role-name>
