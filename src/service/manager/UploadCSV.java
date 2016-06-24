@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -58,11 +60,15 @@ public class UploadCSV extends HttpServlet {
 		File file = new File(uploads, fileName);
 
 		try (InputStream input = filePart.getInputStream()) {
-		    Files.copy(input, file.toPath());
+		    Files.copy(input, file.toPath(),StandardCopyOption.REPLACE_EXISTING);
 		}
 		
 		//A TESTER LA PARTIE QUI SUIT: 
 		CSVFileReader.readCsvFile(file.getAbsolutePath());
+		
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("AccueilManager");
+	    requestDispatcher.forward(request, response);
+
 	}
 
 }

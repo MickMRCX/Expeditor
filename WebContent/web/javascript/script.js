@@ -88,16 +88,20 @@ function checkOnArticle(){
 	}
 }
 
-function addArticleAjax(idArticle){
+function addArticleAjax(idArticle,idCommande,url){
 	$("#qttTraite_" + idArticle).html(parseInt($("#qttTraite_" + idArticle).html()) + 1);
 	$("#poidTotal_" + idArticle).html(parseInt($("#qttTraite_" + idArticle).html()) * parseInt($("#poidArticle_"+ idArticle).html()));
-	
-
+	sendAjax(idArticle,idCommande,$("#qttTraite_" + idArticle).html(),url);
 }
 
-function subtractArticleAjax(idArticle){
+function subtractArticleAjax(idArticle,idCommande,url){
 	$("#qttTraite_" + idArticle).html(parseInt($("#qttTraite_" + idArticle).html()) - 1);
 	$("#poidTotal_" + idArticle).html(parseInt($("#qttTraite_" + idArticle).html()) * parseInt($("#poidArticle_"+ idArticle).html()));
+	sendAjax(idArticle,idCommande,$("#qttTraite_" + idArticle).html(),url);
+}
+
+function sendAjax(idArticle,idCommande,qtt,url){
+	$.get( url + "/GestionAjoutAjax?idArticle=" + idArticle + "&idCommande="  + idcommande + "&qtt="+qtt);
 }
 
 function uploadCSV(){

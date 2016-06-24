@@ -2,7 +2,7 @@
 	  <div id="fileSelect" class="modal">
 			<div class="modal-content">
 				<div class="row">
-				    <form id="formCsv" class="col s12" method="post" action="#" enctype="multipart/form-data">
+				    <form id="formCsv" class="col s12" method="post" action="${pageContext.request.contextPath}/UploadCSV" enctype="multipart/form-data">
 				     	<div class="row">
 							<h4>Selectionnez le fichier csv</h4>
 							<div class="file-field input-field">

@@ -24,13 +24,13 @@ import model.Etats;
 
 public class CSVFileReader {
 	
-	private static final String COMMANDE_DATE = "Date de Commande";
-	private static final String COMMANDE_NUMERO = "Numéro de commande";
-	private static final String COMMANDE_CLIENT = "Nom client";
-	private static final String COMMANDE_ADRESSE = "Adresse";
-	private static final String COMMANDE_ARTICLES = "Articles commandés";
+	private static final String COMMANDE_DATE = "order_date";
+	private static final String COMMANDE_NUMERO = "number";
+	private static final String COMMANDE_CLIENT = "customer_name";
+	private static final String COMMANDE_ADRESSE = "customer_address";
+	private static final String COMMANDE_ARTICLES = "order_content";
 	
-	private static final String [] FILE_HEADER_MAPPING = {COMMANDE_DATE, COMMANDE_NUMERO, COMMANDE_CLIENT, COMMANDE_ADRESSE, COMMANDE_ARTICLES};
+	private static final String [] FILE_HEADER_MAPPING = {COMMANDE_NUMERO, COMMANDE_DATE, COMMANDE_CLIENT, COMMANDE_ADRESSE, COMMANDE_ARTICLES};
 	
 	public static void readCsvFile(String fileName){
 		CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader(FILE_HEADER_MAPPING);
@@ -51,8 +51,8 @@ public class CSVFileReader {
 			
 			for(int inc = 1; inc < csvRecords.size(); inc++){
 				CSVRecord record = (CSVRecord) csvRecords.get(inc);
-				
-				Date date = (Date) df.parse(record.get(COMMANDE_DATE));
+				java.util.Date dateTmp = df.parse(record.get(COMMANDE_DATE));
+				Date date = new Date(dateTmp.getTime());
 				String numero = record.get(COMMANDE_NUMERO);
 				String client = record.get(COMMANDE_CLIENT);
 				String adresse = record.get(COMMANDE_ADRESSE);
@@ -93,7 +93,7 @@ public class CSVFileReader {
 				String[] art = arts[incb].split(" ");;
 				
 				String articleName = art[0].trim();
-				int articleQte = Integer.parseInt(art[1].replace("(", " ").replace(")", " ").trim());
+				int articleQte = Integer.parseInt(art[2].replace("(", " ").replace(")", " ").trim());
 				
 				Article abcd = articleDAL.getOneByLibelle(articleName);
 				

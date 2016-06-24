@@ -56,10 +56,10 @@
 										<td id="poidTotal_<%=a.getIdentifiant()%>"><%=a.getPoids() * lca.getQuantiteTraitee()%></td>
 										<td>
 											<div class="col s3 offset-s3 center-align">
-												<a onclick="subtractArticleAjax(<%=a.getIdentifiant()%>)"><i class="material-icons fa fa-minus-square-o fa-lg"></i></a>
+												<a onclick="subtractArticleAjax(<%=a.getIdentifiant()%>,<%=c.getIdentifiant()%>,${pageContext.request.contextPath})"><i class="material-icons fa fa-minus-square-o fa-lg"></i></a>
 											</div>
 											<div class="col s3 center-align">
-												<a onclick="addArticleAjax(<%=a.getIdentifiant()%>)"><i class="material-icons fa fa-plus-square-o  fa-lg"></i></a>
+												<a onclick="addArticleAjax(<%=a.getIdentifiant()%>,<%=c.getIdentifiant()%>,${pageContext.request.contextPath})"><i class="material-icons fa fa-plus-square-o  fa-lg"></i></a>
 											</div>
 										</td>
 									</tr>
