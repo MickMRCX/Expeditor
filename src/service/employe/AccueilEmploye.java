@@ -57,7 +57,7 @@ public class AccueilEmploye extends HttpServlet {
 	private void processExecute(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		response.setContentType("text/html;charset=UTF-8");
-		Utilisateur user = (Utilisateur) request.getSession().getAttribute("user");
+		Utilisateur user = (Utilisateur) this.getServletConfig().getServletContext().getAttribute("user");
 		ICommandeDAL dalCommande = DALFactory.getCommandeDAL();
 		IArticleDAL dalArticle = DALFactory.getArticleDAL();
 		Commande commande = dalCommande.getByEmploye(user.getIdentifiant());
