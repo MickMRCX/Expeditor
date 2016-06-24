@@ -63,10 +63,9 @@ public class AccueilEmploye extends HttpServlet {
 		Commande commande = dalCommande.getByEmploye(user.getIdentifiant());
 		ArticlesCouple coupleArticle = dalArticle.getArticlesByCommande(commande.getIdentifiant());
 		List<Article> articles = coupleArticle.getArticles();
-		List<LigneCommandeArticle> lignearticles = coupleArticle.getLignesarticles();
+		commande.setArticle_commande(coupleArticle.getLignesarticles());
 		request.setAttribute("commande", commande);
 		request.setAttribute("articles", articles);
-		request.setAttribute("lignearticles", lignearticles);
 		RequestDispatcher requestDispatcher = request.getRequestDispatcher(ACCUEIL_EMPLOYE);
 		requestDispatcher.forward(request, response);
 	}
