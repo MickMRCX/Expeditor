@@ -101,7 +101,17 @@ function subtractArticleAjax(idArticle,idCommande,url){
 }
 
 function sendAjax(idArticlePa,idCommandePa,qttPa,url){
-	$.get( url + "/GestionAjoutAjax", {idArticle:idArticlePa,idCommande:idCommandePa,qtt:qttPa} );
+	$.ajax({
+		  url: url + "/GestionAjoutAjax",
+		  type: "get", //send it through get method
+		  data:{idArticle:idArticlePa,idCommande:idCommandePa,qtt:qttPa},
+		  success: function(response) {
+		    //Do Something
+		  },
+		  error: function(xhr) {
+		    //Do Something to handle error
+		  }
+	});
 }
 
 function uploadCSV(){
