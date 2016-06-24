@@ -1,5 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@page import="model.Article"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %> 
+<%@ page import="dto.LigneCommandeArticle" %>
+<%@ page import="model.Commande" %>
+
 	<%@include file="/web/jsp/fragments/head.jspf" %>
 	<body>
 		<header>
@@ -9,26 +13,18 @@
 			<div class="commande-client col s12">
 				<div class="row">
 					<div class="col s10 offset-s1">
-						test
-						<br >
-						<br >
-						<br >
-						test
-						<br >
-						<br >
-						<br >
-						test
-						<br >
-						<br >
-						<br >
-						test
-						<br >
-						<br >
-						<br >
-						test
-						<br >
-						<br >
-						<br >
+						<%						
+							if(request.getAttribute("commande") != null && request.getAttribute("articles") != null){
+								Commande c = (Commande) request.getAttribute("commande");
+								List<Article> articles = (List<Article>) request.getAttribute("articles");
+							%>
+							<h2><%=c.getIdentifiant()%> - <%=c.getDate_Commande() %></h2>
+							<h4><%=c.getNom_Client()%></h4>
+							<h4><%=c.getAdresse()%></h4>
+							<%for(LigneCommandeArticle lca : c.getArticle_commande()){%>
+							<p><%=LigneCommandeArticle.getArticleFromId(lca.getArticle(),articles).getLibelle()%> - <%=lca.getQuantiteCommande()%>
+							<%}
+							}%>
 					</div>
 				</div>
 			</div>
@@ -46,111 +42,37 @@
 				          </tr>
 				        </thead>
 				        <tbody>
-							<tr>
-								<td>Carte Mère</td>
-								<td>38</td>
-								<td>300</td>
-								<td>11400</td>
-								<td>
-									<div class="col s3 offset-s3 center-align">
-										<i class="material-icons fa fa-plus-square-o fa-lg"></i>
-									</div>
-									<div class="col s3 center-align">
-										<i class="material-icons fa fa-minus-square-o  fa-lg"></i>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>Carte Mère</td>
-								<td>38</td>
-								<td>300</td>
-								<td>11400</td>
-								<td class="">
-									<div class="col s3 offset-s3 center-align">
-										<i class="material-icons fa fa-plus-square-o fa-lg"></i>
-									</div>
-									<div class="col s3 center-align">
-										<i class="material-icons fa fa-minus-square-o  fa-lg"></i>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>Carte Mère</td>
-								<td>38</td>
-								<td>300</td>
-								<td>11400</td>
-								<td class="">
-									<div class="col s3 offset-s3 center-align">
-										<i class="material-icons fa fa-plus-square-o fa-lg"></i>
-									</div>
-									<div class="col s3 center-align">
-										<i class="material-icons fa fa-minus-square-o  fa-lg"></i>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>Carte Mère</td>
-								<td>38</td>
-								<td>300</td>
-								<td>11400</td>
-								<td class="">
-									<div class="col s3 offset-s3 center-align">
-										<i class="material-icons fa fa-plus-square-o fa-lg"></i>
-									</div>
-									<div class="col s3 center-align">
-										<i class="material-icons fa fa-minus-square-o  fa-lg"></i>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>Carte Mère</td>
-								<td>38</td>
-								<td>300</td>
-								<td>11400</td>
-								<td class="">
-									<div class="col s3 offset-s3 center-align">
-										<i class="material-icons fa fa-plus-square-o fa-lg"></i>
-									</div>
-									<div class="col s3 center-align">
-										<i class="material-icons fa fa-minus-square-o  fa-lg"></i>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>Carte Mère</td>
-								<td>38</td>
-								<td>300</td>
-								<td>11400</td>
-								<td class="">
-									<div class="col s3 offset-s3 center-align">
-										<i class="material-icons fa fa-plus-square-o fa-lg"></i>
-									</div>
-									<div class="col s3 center-align">
-										<i class="material-icons fa fa-minus-square-o  fa-lg"></i>
-									</div>
-								</td>
-							</tr>
-							<tr>
-								<td>Carte Mère</td>
-								<td>38</td>
-								<td>300</td>
-								<td>11400</td>
-								<td>
-									<div class="col s3 offset-s3 center-align">
-										<i class="material-icons fa fa-plus-square-o fa-lg"></i>
-									</div>
-									<div class="col s3 center-align">
-										<i class="material-icons fa fa-minus-square-o  fa-lg"></i>
-									</div>
-								</td>
-							</tr>
+				        <%
+				        	if(request.getAttribute("commande") != null && request.getAttribute("articles") != null){
+				        		Commande c = (Commande) request.getAttribute("commande");
+								List<Article> articles = (List<Article>) request.getAttribute("articles");
+								for(LigneCommandeArticle lca : c.getArticle_commande()){
+									Article a = LigneCommandeArticle.getArticleFromId(lca.getArticle(), articles);
+									%>
+									<tr>
+										<td><%=a.getLibelle()%></td>
+										<td id="qttTraite_<%=a.getIdentifiant()%>" ><%=lca.getQuantiteTraitee() %></td>
+										<td id="poidArticle_<%=a.getIdentifiant()%>"><%=a.getPoids() %></td>
+										<td id="poidTotal_<%=a.getIdentifiant()%>"><%=a.getPoids() * lca.getQuantiteTraitee()%></td>
+										<td>
+											<div class="col s3 offset-s3 center-align">
+												<a onclick="substractArticleAjax(<%=a.getIdentifiant()%>)"><i class="material-icons fa fa-minus-square-o fa-lg"></i></a>
+											</div>
+											<div class="col s3 center-align">
+												<a onclick="addArticleAjax(<%=a.getIdentifiant()%>)"><i class="material-icons fa fa-plus-square-o  fa-lg"></i></a>
+											</div>
+										</td>
+									</tr>
+								<%}
+				        	}
+				        %>
 				        </tbody>
 				        <tfoot>
 				        	<tr>
 				        		<td>Total</td>
 				        		<td></td>
 				        		<td></td>
-				        		<td>16100</td>
+				        		<td id="poidTotalAll" >16100</td>
 				        		<td></td>
 				        	</tr>
 				        </tfoot>
