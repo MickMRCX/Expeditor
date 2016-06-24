@@ -1,5 +1,7 @@
 package dto;
 
+import java.util.List;
+
 import model.Article;
 
 public class LigneCommandeArticle {
@@ -41,5 +43,14 @@ public class LigneCommandeArticle {
 	}
 	public void setQuantiteTraitee(int quantiteTraitee) {
 		this.quantiteTraitee = quantiteTraitee;
+	}
+	
+	public static Article getArticleFromId(int id, List<Article> la) {
+		for (Article article : la) {
+			if (article.getIdentifiant() == id) {
+				return article;
+			}
+		}
+		return null;
 	}
 }
