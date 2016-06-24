@@ -89,7 +89,7 @@ public class CSVFileReader {
 				articleDAL.getOneByLibelle(articleName);
 			}
 			
-			Commande commande = new Commande(cmd.getDate(), cmd.getNom(), cmd.getAdresse(), Etats.AFFECTABLE, )
+//			Commande commande = new Commande(cmd.getDate(), cmd.getNom(), cmd.getAdresse(), Etats.AFFECTABLE, )
 			
 		}
 		

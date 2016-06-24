@@ -5,11 +5,21 @@ public class Article {
 	private int identifiant;
 	private String libelle;
 	private int poids;
+	private boolean archive;
 	
+	public Article(int identifiant, String libelle, int poids, boolean archive) {
+		super();
+		this.identifiant = identifiant;
+		this.libelle = libelle;
+		this.poids = poids;
+		this.archive = archive;
+	}
+
 	public Article(String libelle, int poids) {
 		super();
 		this.libelle = libelle;
 		this.poids = poids;
+		this.archive = false;
 	}
 	
 	public Article(int identifiant, String libelle, int poids) {
@@ -17,6 +27,7 @@ public class Article {
 		this.identifiant = identifiant;
 		this.libelle = libelle;
 		this.poids = poids;
+		this.archive = false;
 	}
 	
 	public int getIdentifiant() {
@@ -41,5 +52,13 @@ public class Article {
 	
 	public void setPoids(int poids) {
 		this.poids = poids;
+	}
+
+	public boolean isArchive() {
+		return archive;
+	}
+
+	public void setArchive(boolean archive) {
+		this.archive = archive;
 	}
 }

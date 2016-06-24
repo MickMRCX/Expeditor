@@ -21,87 +21,89 @@ import model.Utilisateur;
  */
 @WebServlet("/GestionArticle")
 public class GestionArticle extends HttpServlet {
-	
 
 	private static final long serialVersionUID = 1L;
 	private static final String ACTION = "action";
 	private static final String ACTION_DELETE = "delete";
 	private static final String ACTION_MODIFY = "modify";
 	private static final String ACTION_ADD = "add";
-	
+
 	private static final String ID = "id";
 	private static final String POIDS = "poidArticle";
 	private static final String LIBELLE = "nomArticle";
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public GestionArticle() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		IArticleDAL dal = DALFactory.getArticleDAL();
-		
-		String action = request.getParameter(ACTION);
-		RequestDispatcher requestDispatcher = null;
-		if (action.equalsIgnoreCase(ACTION_ADD)) {
-				
-			requestDispatcher = request.getRequestDispatcher("/web/jsp/manager/ajoutArticle.jsp");
-	
-		}else if(action.equalsIgnoreCase(ACTION_MODIFY)){
-			Article article = dal.getOneByID(Integer.valueOf(request.getParameter(ID)));
-			request.setAttribute("article", article);
-			requestDispatcher = request.getRequestDispatcher("/web/jsp/manager/ajoutArticle.jsp");
-			
-		}else if(action.equalsIgnoreCase(ACTION_DELETE)){
-			
-			int identifiant = Integer.valueOf(request.getParameter(ID));
-						
-			dal.delete(identifiant);
-			requestDispatcher = request.getRequestDispatcher("ListeArticles");
-			
-		}	else{
-			requestDispatcher = request.getRequestDispatcher("ListeArticles");
-		}
-	    requestDispatcher.forward(request, response);
+	public GestionArticle() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-IArticleDAL dal = DALFactory.getArticleDAL();
-		
-		String action = request.getParameter(ACTION);		
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		IArticleDAL dal = DALFactory.getArticleDAL();
+
+		String action = request.getParameter(ACTION);
+		RequestDispatcher requestDispatcher = null;
 		if (action.equalsIgnoreCase(ACTION_ADD)) {
-			
+
+			requestDispatcher = request.getRequestDispatcher("/web/jsp/manager/ajoutArticle.jsp");
+
+		} else if (action.equalsIgnoreCase(ACTION_MODIFY)) {
+			Article article = dal.getOneByID(Integer.valueOf(request.getParameter(ID)));
+			request.setAttribute("article", article);
+			requestDispatcher = request.getRequestDispatcher("/web/jsp/manager/ajoutArticle.jsp");
+
+		} else if (action.equalsIgnoreCase(ACTION_DELETE)) {
+
+			int identifiant = Integer.valueOf(request.getParameter(ID));
+
+			dal.delete(identifiant);
+			requestDispatcher = request.getRequestDispatcher("ListeArticles");
+
+		} else {
+			requestDispatcher = request.getRequestDispatcher("ListeArticles");
+		}
+		requestDispatcher.forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		IArticleDAL dal = DALFactory.getArticleDAL();
+
+		String action = request.getParameter(ACTION);
+
+		if (action.equalsIgnoreCase(ACTION_ADD)) {
+
 			String libelle = request.getParameter(LIBELLE);
 			int poids = Integer.valueOf(request.getParameter(POIDS));
-			
+
 			Article article = new Article(libelle, poids);
-			
+
 			dal.insert(article);
 
-		}else if(action.equalsIgnoreCase(ACTION_MODIFY)){
-			
-			
+		} else if (action.equalsIgnoreCase(ACTION_MODIFY)) {
+
 			int identifiant = Integer.valueOf(request.getParameter(ID));
 			String libelle = request.getParameter(LIBELLE);
 			int poids = Integer.valueOf(request.getParameter(POIDS));
-			
+
 			Article article = new Article(identifiant, libelle, poids);
-			
+
 			dal.update(article);
-			RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListeArticles");
-		    requestDispatcher.forward(request, response); 
 		}
+		RequestDispatcher requestDispatcher = request.getRequestDispatcher("ListeArticles");
+		requestDispatcher.forward(request, response);
 	}
 
 }

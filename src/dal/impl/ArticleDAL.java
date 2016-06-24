@@ -13,31 +13,27 @@ import dal.IArticleDAL;
 import model.Article;
 import model.Utilisateur;
 
-public class ArticleDAL implements IArticleDAL{
+public class ArticleDAL implements IArticleDAL {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 2091775112324635896L;
-	
-	private final String SELECT_BY_ID = "SELECT Identifiant, Libelle, Poids "
-			+ "FROM Articles WHERE Identifiant = ?";
 
-	private final String SELECT_BY_LIBELLE = "SELECT Identifiant, Libelle, Poids "
-			+ "FROM Articles WHERE Libelle = ?";
+	private final String SELECT_BY_ID = "SELECT Identifiant, Libelle, Poids " + "FROM Articles WHERE Identifiant = ? AND Archive = 0";
 
-	private final String SELECT_ALL = "SELECT Identifiant, Libelle, Poids " + "FROM Articles";
+	private final String SELECT_BY_LIBELLE = "SELECT Identifiant, Libelle, Poids " + "FROM Articles WHERE Libelle = ? and Archive = 0";
 
-	private final String INSERT = "INSERT INTO Articles VALUES(?,?)";
+	private final String SELECT_ALL = "SELECT Identifiant, Libelle, Poids " + "FROM Articles WHERE Archive = 0";
 
-	private final String UPDATE = "UPDATE Articles SET Libelle = ?, Poids = ? "
-			+ "WHERE Identifiant = ?";
+	private final String INSERT = "INSERT INTO Articles VALUES(?,?,?)";
 
-	private final String DELETE = "DELETE FROM Articles WHERE Identifiant = ?";
-	
-	
-	ArticleDAL(){
-		
+	private final String UPDATE = "UPDATE Articles SET Libelle = ?, Poids = ? " + "WHERE Identifiant = ?";
+
+	private final String DELETE = "UPDATE Articles SET Archive = 1 WHERE Identifiant = ?";
+
+	ArticleDAL() {
+
 	}
 
 	@Override
@@ -68,7 +64,7 @@ public class ArticleDAL implements IArticleDAL{
 		}
 		return retour;
 	}
-	
+
 	@Override
 	public Article getOneByLibelle(String lbl) {
 		Article retour = null;
@@ -137,6 +133,7 @@ public class ArticleDAL implements IArticleDAL{
 				PreparedStatement requete = cnx.prepareStatement(INSERT, Statement.RETURN_GENERATED_KEYS);
 				requete.setString(1, obj.getLibelle());
 				requete.setInt(2, obj.getPoids());
+				requete.setByte(3, (byte) (obj.isArchive() ? 1 : 0));
 				requete.executeUpdate();
 			}
 		} catch (SQLException e) {
