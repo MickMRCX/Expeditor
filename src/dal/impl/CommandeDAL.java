@@ -134,6 +134,9 @@ public class CommandeDAL implements ICommandeDAL {
 				requete.setString(3, obj.getAdresse());
 				requete.setInt(4, Utilities.getEtatInt(obj.getEtat()));
 				requete.executeUpdate();
+				
+				ResultSet rs = requete.getGeneratedKeys();
+				obj.setIdentifiant(rs.getInt(0));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
