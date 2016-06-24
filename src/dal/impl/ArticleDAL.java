@@ -10,8 +10,9 @@ import java.util.List;
 
 import dal.AccesBase;
 import dal.IArticleDAL;
+import dto.LigneCommandeArticle;
 import model.Article;
-import model.Utilisateur;
+import util.ArticlesCouple;
 
 public class ArticleDAL implements IArticleDAL {
 
@@ -31,6 +32,8 @@ public class ArticleDAL implements IArticleDAL {
 	private final String UPDATE = "UPDATE Articles SET Libelle = ?, Poids = ? " + "WHERE Identifiant = ?";
 
 	private final String DELETE = "UPDATE Articles SET Archive = 1 WHERE Identifiant = ?";
+	
+	private final String SELECT_ARTICLES_COMMANDE = "SELECT TOP 1 a.Identifiant ,ca.Commande_id ,ca.Quantite_carton ,ca.Quantite_commandee ,a.Libelle ,a.Poids  FROM Commande_Article ca INNER JOIN Commande c ON ca.Commande_id = c.Identifiant  INNER JOIN Articles a ON ca.Article_id = a.Identifiant WHERE c.Identifiant=? ORDER BY a.Identifiant";
 
 	ArticleDAL() {
 
@@ -196,5 +199,43 @@ public class ArticleDAL implements IArticleDAL {
 			}
 		}
 	}
+
+	@Override
+	public ArticlesCouple getArticlesByCommande(int idCommande) {
+		ArticlesCouple retour = null;
+		List<Article> articles = new ArrayList<Article>();
+		List<LigneCommandeArticle> lignearticles = new ArrayList<LigneCommandeArticle>();
+		Connection cnx = null;
+		try {
+			cnx = AccesBase.getConnection();
+			PreparedStatement requete = cnx.prepareStatement(SELECT_ARTICLES_COMMANDE);
+			requete.setInt(1, idCommande);
+			ResultSet resultat = requete.executeQuery();
+			while (resultat.next()) {				
+				int identifiant = resultat.getInt("Identifiant");
+				int commande_id = resultat.getInt("Commande_id");
+				int Quantite_carton = resultat.getInt("Quantite_carton");
+				int Quantite_commandee = resultat.getInt("Quantite_commandee");
+				String libelle = resultat.getString("Libelle");
+				int poids = resultat.getInt("Poids");
+				
+				articles.add(new Article(identifiant, libelle, poids));
+				lignearticles.add(new LigneCommandeArticle(identifiant, commande_id, Quantite_commandee, Quantite_carton));
+			}
+			retour = new ArticlesCouple(articles, lignearticles);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (cnx != null && !cnx.isClosed()) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return retour;
+	}
+	
 
 }
