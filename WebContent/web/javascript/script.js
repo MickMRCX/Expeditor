@@ -101,7 +101,7 @@ function subtractArticleAjax(idArticle,idCommande,url){
 }
 
 function sendAjax(idArticle,idCommande,qtt,url){
-	$.get( url + "/GestionAjoutAjax?idArticle=" + idArticle + "&idCommande="  + idcommande + "&qtt="+qtt);
+	$.get( url + "/GestionAjoutAjax?idArticle=" + idArticle + "&idCommande="  + idCommande + "&qtt="+qtt);
 }
 
 function uploadCSV(){
