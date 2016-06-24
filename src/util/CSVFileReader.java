@@ -14,8 +14,10 @@ import org.apache.commons.csv.CSVFormat;
 	import org.apache.commons.csv.CSVRecord;
 
 import dal.IArticleDAL;
+import dal.ICommandeDAL;
 import dal.impl.ArticleDAL;
 import dal.impl.DALFactory;
+import dto.LigneCommandeArticle;
 import model.Article;
 import model.Commande;
 import model.Etats;
@@ -34,6 +36,7 @@ public class CSVFileReader {
 		CSVFormat csvFileFormat = CSVFormat.DEFAULT.withHeader(FILE_HEADER_MAPPING);
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy kk:mm:ss");
 		List commandes = new ArrayList();
+		List ligneCommandeArticle = new ArrayList<LigneCommandeArticle>();
 		CSVParser csvFileParser = null;
 		FileReader fileReader = null;
 		
@@ -73,9 +76,15 @@ public class CSVFileReader {
 		
 		List<Article> articlesList = new ArrayList<Article>();
 		IArticleDAL articleDAL = DALFactory.getArticleDAL();
+		ICommandeDAL commandeDAL = DALFactory.getCommandeDAL();
 		
 		for(int inc = 0; inc < commandes.size(); inc++){
 			SuperParser2000 cmd = (SuperParser2000) commandes.get(inc);
+			
+			Commande commande = new Commande(cmd.getDate(), cmd.getNom(), cmd.getAdresse(), Etats.AFFECTABLE, ligneCommandeArticle);
+			
+			commande = commandeDAL.insert(commande);
+			
 			String articles = cmd.getArticles();
 			
 			String[] arts = articles.split(";");
@@ -86,10 +95,16 @@ public class CSVFileReader {
 				String articleName = art[0].trim();
 				int articleQte = Integer.parseInt(art[1].replace("(", " ").replace(")", " ").trim());
 				
-				articleDAL.getOneByLibelle(articleName);
+				Article abcd = articleDAL.getOneByLibelle(articleName);
+				
+				LigneCommandeArticle lCmdA = new LigneCommandeArticle(abcd.getIdentifiant(), commande.getIdentifiant(), articleQte, 0);
+				
+				ligneCommandeArticle.add(lCmdA);
 			}
 			
-			Commande commande = new Commande(cmd.getDate(), cmd.getNom(), cmd.getAdresse(), Etats.AFFECTABLE, )
+			commande.setArticle_commande(ligneCommandeArticle);
+			
+			commandeDAL.update(commande);
 			
 		}
 		
