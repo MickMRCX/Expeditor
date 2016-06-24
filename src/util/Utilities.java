@@ -23,13 +23,13 @@ public class Utilities {
 		switch (etat) {
 		
 		case AFFECTABLE:
-			return 0;
-		case AFFECTEE:
 			return 1;
-		case EXPEDIEE:
+		case AFFECTEE:
 			return 2;
-		case REAFFECTABLE:
+		case EXPEDIEE:
 			return 3;
+		case REAFFECTABLE:
+			return 4;
 		default:
 			return 0;
 		}

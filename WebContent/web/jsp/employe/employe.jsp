@@ -63,9 +63,8 @@
 											</div>
 										</td>
 									</tr>
-								<%}
-				        	}
-				        %>
+								<%}%>
+				        
 				        </tbody>
 				        <tfoot>
 				        	<tr>
@@ -82,8 +81,9 @@
 			<div class="row">
 				<br >
 				<div class="col s10 offset-s1">
-					<a class="waves-effect waves-light btn btn-large btn-block deep-purple lighten-1"><i class="fa fa-print col s4 "></i><b class="col s4">valider</b> <i class="fa fa-check col s4"></i></a>
+					<a target="_blank" href="${pageContext.request.contextPath}/ImpressionPDF?idCommande=<%=c.getIdentifiant()%>" class="waves-effect waves-light btn btn-large btn-block deep-purple lighten-1"><i class="fa fa-print col s4 "></i><b class="col s4">valider</b> <i class="fa fa-check col s4"></i></a>
 				</div>
+				<%} %>
 			</div>
 		</main>
 		<footer>
