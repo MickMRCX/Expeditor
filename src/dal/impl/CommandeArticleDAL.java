@@ -13,7 +13,7 @@ import dal.IRepository;
 import dto.LigneCommandeArticle;
 
 public class CommandeArticleDAL implements IRepository<LigneCommandeArticle> {
-	
+
 	/**
 	 * 
 	 */
@@ -21,14 +21,15 @@ public class CommandeArticleDAL implements IRepository<LigneCommandeArticle> {
 
 	private final String SELECT_BY_COMMANDE = "SELECT Article_id, Commande_id, Quantite_carton, Quantite_commandee"
 			+ "FROM Commande_Article WHERE Commande_id = ?";
-	
-	private final String SELECT_ALL = "SELECT Article_id, Commande_id, Quantite_carton, Quantite_commandee " + "FROM Commande_Article";
+
+	private final String SELECT_ALL = "SELECT Article_id, Commande_id, Quantite_carton, Quantite_commandee "
+			+ "FROM Commande_Article";
 
 	private final String INSERT = "INSERT INTO Commande_Article VALUES(?,?,?,?)";
 
-	private final String UPDATE = "UPDATE Commande_Article SET Quantite_carton = ?, Quantite_commandee = ? "
+	private final String UPDATE = "UPDATE Commande_Article SET Quantite_carton = ?, "
 			+ "WHERE Commande_id = ? AND Article_id = ?";
-	
+
 	private final String DELETE_BY_COMMANDE = "DELETE FROM Commande_Article WHERE = Commande_id = ?";
 
 	/**
@@ -52,7 +53,7 @@ public class CommandeArticleDAL implements IRepository<LigneCommandeArticle> {
 				int commande_id = resultat.getInt("Commande_id");
 				int quantite_carton = resultat.getInt("Quantite_carton");
 				int quantite_commandee = resultat.getInt("Quantite_commandee");
-				
+
 				retour = new LigneCommandeArticle(article_id, commande_id, quantite_commandee, quantite_carton);
 			}
 		} catch (SQLException e) {
@@ -68,8 +69,8 @@ public class CommandeArticleDAL implements IRepository<LigneCommandeArticle> {
 		}
 		return retour;
 	}
-	
-	public List<LigneCommandeArticle> getAllByCommande(int id){
+
+	public List<LigneCommandeArticle> getAllByCommande(int id) {
 		List<LigneCommandeArticle> retour = new ArrayList<LigneCommandeArticle>();
 		Connection cnx = null;
 		try {
@@ -82,7 +83,7 @@ public class CommandeArticleDAL implements IRepository<LigneCommandeArticle> {
 				int commande_id = resultat.getInt("Commande_id");
 				int quantite_carton = resultat.getInt("Quantite_carton");
 				int quantite_commandee = resultat.getInt("Quantite_commandee");
-				
+
 				retour.add(new LigneCommandeArticle(article_id, commande_id, quantite_commandee, quantite_carton));
 			}
 		} catch (SQLException e) {
@@ -112,7 +113,7 @@ public class CommandeArticleDAL implements IRepository<LigneCommandeArticle> {
 				int commande_id = resultat.getInt("Commande_id");
 				int quantite_carton = resultat.getInt("Quantite_carton");
 				int quantite_commandee = resultat.getInt("Quantite_commandee");
-				
+
 				retour.add(new LigneCommandeArticle(article_id, commande_id, quantite_commandee, quantite_carton));
 			}
 		} catch (SQLException e) {
@@ -164,9 +165,8 @@ public class CommandeArticleDAL implements IRepository<LigneCommandeArticle> {
 				cnx = AccesBase.getConnection();
 				PreparedStatement requete = cnx.prepareStatement(UPDATE);
 				requete.setInt(1, obj.getQuantiteCommande());
-				requete.setInt(2, obj.getQuantiteTraitee());
-				requete.setInt(3, obj.getCommande());
-				requete.setInt(4, obj.getArticle());
+				requete.setInt(2, obj.getCommande());
+				requete.setInt(3, obj.getArticle());
 				requete.executeUpdate();
 			}
 		} catch (SQLException e) {
@@ -181,6 +181,28 @@ public class CommandeArticleDAL implements IRepository<LigneCommandeArticle> {
 			}
 		}
 		return obj;
+	}
+
+	public void update(int idArticle, int idCommande, int qte) {
+		Connection cnx = null;
+		try {
+			cnx = AccesBase.getConnection();
+			PreparedStatement requete = cnx.prepareStatement(UPDATE);
+			requete.setInt(1, qte);
+			requete.setInt(2, idCommande);
+			requete.setInt(3, idArticle);
+			requete.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (cnx != null && !cnx.isClosed()) {
+					cnx.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	@Override

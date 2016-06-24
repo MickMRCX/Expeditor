@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import dal.impl.CommandeArticleDAL;
+
 /**
  * Servlet implementation class GestionAjoutAjax
  */
@@ -16,9 +18,9 @@ public class GestionAjoutAjax extends HttpServlet {
 	
 	private static String IDENTIFIANT_ARTICLE = "idArticle";
 	private static String IDENTIFIANT_COMMANDE = "idCommande";
-	private static String ACTION = "action";
-	private static String METHOD_ADD = "add";
-	private static String METHOD_SUBSTRACT = "substract";
+	// private static String ACTION = "action";
+	// private static String METHOD_ADD = "add";
+	// private static String METHOD_SUBSTRACT = "substract";
        
     /**
      * @see HttpServlet#HttpServlet()
@@ -32,16 +34,11 @@ public class GestionAjoutAjax extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		int idArticle = Integer.getInteger(request.getParameter(IDENTIFIANT_ARTICLE));
 		int idCommande = Integer.getInteger(request.getParameter(IDENTIFIANT_COMMANDE));
-		String action = request.getParameter(ACTION);
-		if(action == METHOD_ADD){
-			
-		}
-		else if(action==METHOD_SUBSTRACT){
-			
-		}
+		int qte = Integer.getInteger(request.getParameter("qtt"));
+		CommandeArticleDAL dal = new CommandeArticleDAL();			
+		dal.update(idArticle, idCommande, qte);		
 	}
 
 	/**
