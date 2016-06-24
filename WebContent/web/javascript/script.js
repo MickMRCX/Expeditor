@@ -100,6 +100,10 @@ function subtractArticleAjax(idArticle){
 	$("#poidTotal_" + idArticle).html(parseInt($("#qttTraite_" + idArticle).html()) * parseInt($("#poidArticle_"+ idArticle).html()));
 }
 
+function uploadCSV(){
+	$("#formCsv").submit();
+}
+
 
 
 $(document).ready(initSideNav);
